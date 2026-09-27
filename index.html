@@ -252,6 +252,7 @@ table.det td,table.det th{padding:7px 8px}
 <div id="login" role="dialog" aria-modal="true" aria-labelledby="lgT"><div class="card">
   <div class="org" style="color:var(--inam)">SMVS · Naroda</div>
   <h2 id="lgT">ઇનામ વિતરણ ૨૦૨૬ Login</h2>
+  <p class="note" id="lgHint" style="margin:2px 0 10px;display:none">No Login ID exists yet. Choose any ID + password below — this becomes the first Admin account.</p>
   <label class="fld"><span>Login ID</span><input id="lgId" autocapitalize="none" autocomplete="username"></label>
   <label class="fld"><span>Password</span><input id="lgPw" type="password" autocomplete="current-password"></label>
   <div id="lgErr"></div>
@@ -291,7 +292,7 @@ const students = ROSTER.map(([g,std,sr,name,mandal]) => ({id:g+"-"+sr,g,std,sr,n
   .sort((a,b)=> a.g.localeCompare(b.g) || STDS.indexOf(a.std)-STDS.indexOf(b.std) || srKey(a.sr).localeCompare(srKey(b.sr)));
 const byId = Object.fromEntries(students.map(s=>[s.id,s]));
 
-const DEFAULT_ALLOCS = [{"g": "B", "gift": "દોરીવાળી બોટલ", "qty": 21, "stds": ["Balvatika", "Junior KG", "Senior KG"], "vol": "", "id": "kgB"}, {"g": "B", "gift": "રેકેટ બોલ સાથે સેટ", "qty": 56, "stds": ["Std 1", "Std 2"], "vol": "", "id": "s12B"}, {"g": "B", "gift": "નાની બોટલ", "qty": 31, "stds": ["Std 3", "Std 4"], "vol": "", "id": "s34B"}, {"g": "B", "gift": "વોલેટ", "qty": 40, "stds": ["Std 5", "Std 8"], "vol": "", "id": "s58B"}, {"g": "B", "gift": "Exam pad", "qty": 35, "stds": ["Std 6", "Std 7"], "vol": "", "id": "s67B"}, {"g": "B", "gift": "મોટી બોટલ", "qty": 16, "stds": ["Std 9", "Std 10"], "vol": "", "id": "s910B"}, {"g": "B", "gift": "ઘડિયાળ", "qty": 5, "stds": ["Std 11", "Std 12"], "vol": "", "id": "s1112B"}, {"g": "B", "gift": "ડાયરી", "qty": 6, "stds": ["College"], "vol": "", "id": "colB"}];
+const DEFAULT_ALLOCS = [{"g": "A", "gift": "દોરીવાળી બોટલ", "qty": 21, "stds": ["Balvatika", "Junior KG", "Senior KG"], "vol": "", "id": "kgB"}, {"g": "A", "gift": "રેકેટ બોલ સાથે સેટ", "qty": 56, "stds": ["Std 1", "Std 2"], "vol": "", "id": "s12B"}, {"g": "A", "gift": "નાની બોટલ", "qty": 31, "stds": ["Std 3", "Std 4"], "vol": "", "id": "s34B"}, {"g": "A", "gift": "વોલેટ", "qty": 40, "stds": ["Std 5", "Std 8"], "vol": "", "id": "s58B"}, {"g": "A", "gift": "Exam pad", "qty": 35, "stds": ["Std 6", "Std 7"], "vol": "", "id": "s67B"}, {"g": "A", "gift": "મોટી બોટલ", "qty": 16, "stds": ["Std 9", "Std 10"], "vol": "", "id": "s910B"}, {"g": "A", "gift": "ઘડિયાળ", "qty": 5, "stds": ["Std 11", "Std 12"], "vol": "", "id": "s1112B"}, {"g": "A", "gift": "ડાયરી", "qty": 6, "stds": ["College"], "vol": "", "id": "colB"}];
 let att = {}, guests = {}, cfg = {allocs:DEFAULT_ALLOCS};
 let db = null, canSet = true;
 let me = ""; try{ me = localStorage.getItem("iv_me") || ""; }catch(e){}
@@ -355,7 +356,7 @@ function renderHeader(){
   const t=totals(students), gp=guestPpl();
   $("hHall").textContent=t.ppl+gp; $("hStu").textContent=t.stu; $("hTot").textContent=t.n;
   $("hFam").textContent=t.fam; $("hGuest").textContent=gp; $("hGift").textContent=t.gift;
-  $("meTxt").textContent = U() ? `${U().name} · ${roleText(U())}` : ownerMode ? "Owner" : (me || "તમારું નામ પસંદ કરો");
+  $("meTxt").textContent = U() ? `${U().name} · ${roleText(U())}` : (me || "તમારું નામ પસંદ કરો");
 }
 
 /* ---------- filters ---------- */
@@ -562,7 +563,7 @@ function renderSettings(){
   if(r!=="admin"){ $("main").innerHTML=`<div class="set"><h2>Account</h2>${accountBox()}<p class="note">Your entries are recorded as <b>${esc(me)}</b>.</p></div>`; if($("lgOut")) $("lgOut").onclick=logout; return; }
   renderAdminSettings();
   const set=document.querySelector("#main .set");
-  if(U()||ownerMode){ const first=set.querySelector("h2"), box=set.querySelector(".box"); if(first) first.remove(); if(box) box.remove(); }
+  if(U()){ const first=set.querySelector("h2"), box=set.querySelector(".box"); if(first) first.remove(); if(box) box.remove(); }
   set.insertAdjacentHTML("afterbegin", accountBox());
   if(canSet) { set.insertAdjacentHTML("beforeend", usersSection()); bindUsers(); }
   if($("lgOut")) $("lgOut").onclick=logout;
@@ -570,10 +571,12 @@ function renderSettings(){
 function setMe(n){ me=n; try{ localStorage.setItem("iv_me", n); }catch(e){} renderHeader(); toast(n?`Hello, ${n}`:"Name cleared"); ui.mine=true; if(ui.view==="set") renderSettings(); }
 
 /* ---------- login & roles ---------- */
-let users = [], ownerMode = false, usersReady = false;
+let users = [], usersReady = false;
+const DEFAULT_ADMIN_ID = "admin", DEFAULT_ADMIN_PW = "admin123";
+async function defaultAdminUser(){ return {id:DEFAULT_ADMIN_ID, name:"Admin", role:"admin", ph:await hashPw(DEFAULT_ADMIN_ID, DEFAULT_ADMIN_PW)}; }
 let sessId = null; try{ sessId = localStorage.getItem("iv_uid"); }catch(e){}
 const U = () => users.find(u=>u.id===sessId) || null;
-const role = () => { if(!usersReady) return null; const u=U(); if(u) return u.role; return (users.length===0 || ownerMode) ? "admin" : null; };
+const role = () => { if(!usersReady) return null; const u=U(); return u ? u.role : null; };
 const VIEWS = {admin:["entry","gift","report","set"], entry:["entry","set"], gift:["gift","set"]};
 async function hashPw(id,pw){
   const b = await crypto.subtle.digest("SHA-256", new TextEncoder().encode("smvs-iv|"+id.toLowerCase()+"|"+pw));
@@ -581,7 +584,7 @@ async function hashPw(id,pw){
 }
 const allocById = id => allocs().find(a=>a.id===id) || null;
 function roleText(u){
-  if(!u) return ownerMode ? "Owner (admin)" : "Admin";
+  if(!u) return "Admin";
   if(u.role==="admin") return "Admin";
   if(u.role==="entry") return "હાજરી: "+gLabel(u.g);
   if(u.alloc==="rank") return "ઇનામ: 🏆 Rankers "+gLabel(u.g);
@@ -596,6 +599,10 @@ function applyRole(){
   const r=role(), u=U();
   if(u) me=u.name;
   $("login").style.display = r ? "none" : "flex";
+  const firstTime = usersReady && users.length===0;
+  if($("lgHint")) $("lgHint").style.display = firstTime ? "" : "none";
+  if($("lgT")) $("lgT").textContent = firstTime ? "પ્રથમ વખત - Admin ID બનાવો" : "ઇનામ વિતરણ ૨૦૨૬ Login";
+  if($("lgGo")) $("lgGo").textContent = firstTime ? "Create Admin & Login" : "Login";
   if(!r) return;
   const allowed=VIEWS[r];
   document.querySelectorAll("#nav button").forEach(b=>b.style.display = allowed.includes(b.dataset.v) ? "" : "none");
@@ -609,14 +616,25 @@ function applyRole(){
   document.querySelectorAll("#seg button").forEach(x=>x.classList.toggle("on",x.dataset.g===ui.g));
 }
 async function doLogin(){
+  if(!usersReady) return;
   const id=$("lgId").value.trim().toLowerCase(), pw=$("lgPw").value;
+  if(users.length===0){
+    if(!id || !/^[a-z0-9._-]{2,30}$/.test(id)){ $("lgErr").textContent="ID: only letters, numbers, . _ - (2-30 chars)"; return; }
+    if(pw.length<4){ $("lgErr").textContent="Password ઓછામાં ઓછું 4 characters"; return; }
+    const u={id,name:id,role:"admin",ph:await hashPw(id,pw)};
+    users=[u]; writeUsers();
+    sessId=id; try{ localStorage.setItem("iv_uid",id); }catch(e){}
+    $("lgPw").value=""; $("lgErr").textContent=""; ui.view="entry"; ui.f="all"; ui.q=""; $("q").value=""; ui.std="";
+    applyRole(); render(); toast(`Admin ID "${id}" બનાવ્યું. Welcome!`);
+    return;
+  }
   const u=users.find(x=>x.id===id);
   if(!u || !pw || (await hashPw(id,pw))!==u.ph){ $("lgErr").textContent="ID અથવા password ખોટો છે"; return; }
   sessId=u.id; try{ localStorage.setItem("iv_uid",u.id); }catch(e){}
   $("lgPw").value=""; $("lgErr").textContent=""; ui.view=VIEWS[u.role][0]; ui.f=ui.view==="gift"?"pend":"all"; ui.q=""; $("q").value=""; ui.std=""; applyRole(); render(); toast(`Welcome, ${u.name}`);
 }
 function logout(){
-  sessId=null; ownerMode=false; try{ localStorage.removeItem("iv_uid"); }catch(e){}
+  sessId=null; try{ localStorage.removeItem("iv_uid"); }catch(e){}
   me=""; applyRole(); render();
 }
 function writeUsers(){ put("cfg/users",{users}); }
@@ -656,10 +674,7 @@ function bindUsers(){
     const u={id,name,role:r,ph:await hashPw(id,pw)};
     if(r==="entry") u.g=$("nuG").value;
     if(r==="gift"){ u.alloc=$("nuA").value; if(u.alloc==="rank") u.g=$("nuG").value; else { const a=allocById(u.alloc); u.g=a?a.g:"A"; } }
-    const first = users.length===0;
     users=[...users,u]; writeUsers();
-    if(first && r==="admin"){ sessId=id; try{ localStorage.setItem("iv_uid",id); }catch(e){} }
-    else if(first){ ownerMode=true; }
     toast(`ID "${id}" created`); applyRole(); renderSettings();
   };
   document.querySelectorAll("[data-delu]").forEach(b=>b.onclick=()=>{ const u=users[+b.dataset.delu];
@@ -670,8 +685,8 @@ function bindUsers(){
 }
 function accountBox(){
   const u=U();
-  if(!u && !ownerMode) return "";
-  return `<div class="box" style="margin-top:12px"><div class="volh"><div><b>${esc(u?u.name:"Owner")}</b><div class="sh-s">${esc(roleText(u))}${u?", ID: "+esc(u.id):""}</div></div><button class="ghost" id="lgOut">Logout</button></div></div>`;
+  if(!u) return "";
+  return `<div class="box" style="margin-top:12px"><div class="volh"><div><b>${esc(u.name)}</b><div class="sh-s">${esc(roleText(u))}, ID: ${esc(u.id)}</div></div><button class="ghost" id="lgOut">Logout</button></div></div>`;
 }
 
 function render(){
@@ -810,7 +825,12 @@ render();
     firebase.initializeApp(firebaseConfig);
     db = firebase.firestore();
   }catch(e){ db=null; }
-  if(!db){ usersReady=true; applyRole(); render(); $("liveTxt").textContent="Offline: this phone only"; showWarn("Live sharing is off. Add your Firebase config in index.html so all phones stay in sync (see README.md)."); return; }
+  if(!db){
+    (async()=>{ users=[await defaultAdminUser()]; usersReady=true; applyRole(); render();
+      $("liveTxt").textContent="Offline: this phone only";
+      showWarn("Live sharing is off. Add your Firebase config in index.html so all phones stay in sync (see README.md)."); })();
+    return;
+  }
   const lost=()=>{ $("dot").classList.remove("on"); $("liveTxt").textContent="Connection lost, reload page"; };
   const refresh=()=>{ $("dot").classList.add("on"); $("liveTxt").textContent="Live, synced across phones";
     if(cur || $("gsWrap").classList.contains("open")) renderHeader();
@@ -818,7 +838,13 @@ render();
     else render(); };
   db.collection("att").limit(1000).onSnapshot(snap=>{ const n={}; snap.docs.forEach(d=>{ if(byId[d.id]) n[d.id]=d.data(); }); att=n; refresh(); }, lost);
   db.collection("guests").limit(1000).onSnapshot(snap=>{ const n={}; snap.docs.forEach(d=>{ n[d.id]=d.data(); }); guests=n; refresh(); }, lost);
-  db.doc("cfg/users").onSnapshot(d=>{ usersReady=true; users = d.exists && Array.isArray(d.data().users) ? d.data().users : []; if(sessId && !U()){ sessId=null; try{ localStorage.removeItem("iv_uid"); }catch(e){} } applyRole(); refresh(); }, lost);
+  db.doc("cfg/users").onSnapshot(async d=>{
+    usersReady=true;
+    if(!d.exists){ users=[await defaultAdminUser()]; put("cfg/users", {users}); }
+    else users = Array.isArray(d.data().users) ? d.data().users : [];
+    if(sessId && !U()){ sessId=null; try{ localStorage.removeItem("iv_uid"); }catch(e){} }
+    applyRole(); refresh();
+  }, lost);
   db.doc("cfg/main").onSnapshot(d=>{ const v=d.exists?d.data():{allocs:DEFAULT_ALLOCS}; cfg={allocs:(Array.isArray(v.allocs)?v.allocs:[]).map(a=>{ const b=a.stds?a:{...a,stds:a.std?[a.std]:[]}; return b.id?b:{...b,id:"a_"+b.g+"_"+(b.stds||[]).join("_").replace(/\s/g,"")}; })}; refresh(); }, lost);
 })();
 </script>
