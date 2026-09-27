@@ -1,0 +1,826 @@
+<!doctype html>
+<html lang="gu">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Inam Vitran Hajari 2026 · Naroda</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Hind+Vadodara:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#EEF1F8; --card:#FFFFFF; --ink:#18203F; --muted:#5E6785; --line:#D9DEEC;
+  --navy:#1C2554; --navy2:#27316B; --gold:#F2B21B; --onnavy:#FFFFFF;
+  --balak:#2A56C6; --mata:#C4306A; --pita:#16804A; --inam:#DB5E14;
+  --soft-b:#E6EDFC; --soft-m:#FBE7EF; --soft-p:#E2F4EA; --soft-i:#FDEBDD;
+  --ok:#16804A;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0F1426; --card:#181F38; --ink:#E9ECF7; --muted:#9AA3C2; --line:#2A3356;
+  --navy:#141B3D; --navy2:#222B5A; --gold:#F5BD3A; --onnavy:#FFFFFF;
+  --balak:#7C9EF5; --mata:#F07AA6; --pita:#4CC586; --inam:#F59A5B;
+  --soft-b:#1E2A55; --soft-m:#3A1C2C; --soft-p:#153526; --soft-i:#3A2517; --ok:#4CC586;
+  color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --bg:#0F1426; --card:#181F38; --ink:#E9ECF7; --muted:#9AA3C2; --line:#2A3356;
+  --navy:#141B3D; --navy2:#222B5A; --gold:#F5BD3A; --onnavy:#FFFFFF;
+  --balak:#7C9EF5; --mata:#F07AA6; --pita:#4CC586; --inam:#F59A5B;
+  --soft-b:#1E2A55; --soft-m:#3A1C2C; --soft-p:#153526; --soft-i:#3A2517; --ok:#4CC586;
+  color-scheme:dark;
+}
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Hind Vadodara","Noto Sans Gujarati",system-ui,sans-serif;font-size:16px;line-height:1.4;-webkit-tap-highlight-color:transparent}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible,input:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+
+header{background:var(--navy);color:var(--onnavy);padding:14px 16px 0;border-bottom:4px solid var(--gold)}
+.top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;max-width:760px;margin:0 auto}
+.org{font-size:13px;color:var(--gold);font-weight:600}
+h1{font-size:20px;margin:2px 0 0;font-weight:700;line-height:1.2}
+.live{display:flex;align-items:center;gap:6px;font-size:12px;opacity:.85;margin-top:4px}
+.dot{width:8px;height:8px;border-radius:50%;background:#8a8fa8}
+.dot.on{background:#3DDC84;box-shadow:0 0 0 3px rgba(61,220,132,.25)}
+.hall{text-align:right}
+.hall b{display:block;font-size:44px;line-height:1;font-weight:700;color:var(--gold);font-variant-numeric:tabular-nums}
+.hall span{font-size:12px;opacity:.85}
+.stats{display:flex;gap:18px;max-width:760px;margin:12px auto 0;padding-bottom:12px;font-size:13px;overflow-x:auto}
+.stats div{white-space:nowrap}
+.stats strong{font-size:17px;margin-right:4px;font-variant-numeric:tabular-nums}
+
+.controls{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding:10px 16px 8px;border-bottom:1px solid var(--line)}
+.controls>*{max-width:760px;margin-left:auto;margin-right:auto}
+.search{display:flex;flex-direction:column;gap:8px}
+.search input{flex:1;min-width:0;font:inherit;font-size:17px;padding:11px 14px;border-radius:12px;border:1.5px solid var(--line);background:var(--card);color:var(--ink)}
+.seg{display:flex;background:var(--card);border:1.5px solid var(--line);border-radius:12px;overflow:hidden;flex-shrink:0}
+.seg button{flex:1;border:0;background:none;padding:7px 8px;font-weight:600;font-size:14px;color:var(--muted)}
+.seg button.on{background:var(--navy);color:var(--onnavy)}
+.chips{display:flex;gap:6px;overflow-x:auto;margin-top:8px;padding-bottom:2px;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chip{border:1.5px solid var(--line);background:var(--card);border-radius:999px;padding:4px 12px;font-size:14px;white-space:nowrap;color:var(--ink)}
+.chip.on{border-color:var(--navy2);background:var(--navy2);color:var(--onnavy)}
+.chip small{opacity:.7;margin-left:4px}
+
+main{max-width:760px;margin:0 auto;padding:8px 12px 110px}
+.grp{font-size:13px;font-weight:700;color:var(--muted);margin:14px 4px 6px;display:flex;justify-content:space-between}
+.row{display:flex;align-items:center;gap:12px;width:100%;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin-bottom:6px}
+.row.here{border-left:5px solid var(--ok)}
+.sr{font-weight:700;color:var(--balak);min-width:52px;font-variant-numeric:tabular-nums}
+.who{flex:1;min-width:0}
+.who .n{font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.who .s{font-size:13px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tags{display:flex;gap:4px;align-items:center;flex-shrink:0}
+.t{font-size:12px;font-weight:700;border-radius:6px;padding:2px 6px}
+.t.b{background:var(--soft-b);color:var(--balak)}.t.m{background:var(--soft-m);color:var(--mata)}.t.p{background:var(--soft-p);color:var(--pita)}.t.i{background:var(--soft-i);color:var(--inam)}
+.cnt{min-width:34px;height:34px;border-radius:10px;background:var(--ok);color:#fff;font-weight:700;display:grid;place-items:center;font-variant-numeric:tabular-nums}
+.gbtn{border:2px solid var(--inam);background:transparent;color:var(--inam);border-radius:10px;padding:6px 12px;font-weight:700;min-width:88px}
+.gbtn.done{background:var(--inam);color:#fff}
+.empty{text-align:center;color:var(--muted);padding:40px 12px}
+
+nav{position:fixed;left:0;right:0;bottom:0;z-index:10;background:var(--card);border-top:1px solid var(--line);display:flex;padding-bottom:env(safe-area-inset-bottom,0px)}
+nav button{flex:1;border:0;background:none;padding:10px 0 12px;font-weight:600;font-size:15px;color:var(--muted);border-top:3px solid transparent}
+nav button.on{color:var(--ink);border-top-color:var(--gold)}
+
+.scrim{position:fixed;inset:0;background:rgba(10,14,30,.5);z-index:20;display:none}
+.sheet{position:fixed;left:0;right:0;bottom:0;z-index:21;background:var(--card);border-radius:18px 18px 0 0;padding:18px 18px calc(18px + env(safe-area-inset-bottom,0px));max-width:560px;margin:0 auto;transform:translateY(105%);visibility:hidden;transition:transform .22s ease,visibility .22s}
+.open .scrim{display:block}.open .sheet{transform:none;visibility:visible}
+@media (prefers-reduced-motion:reduce){.sheet{transition:none}}
+.sh-sr{color:var(--balak);font-weight:700}
+.sh-n{font-size:21px;font-weight:700;line-height:1.25;margin:2px 0}
+.sh-s{color:var(--muted);font-size:14px}
+.tog{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:16px 0 10px}
+.tg{border:2px solid var(--line);background:var(--card);border-radius:14px;padding:12px 4px;font-weight:700;font-size:17px}
+.tg[data-k=b].on{background:var(--balak);border-color:var(--balak);color:#fff}
+.tg[data-k=m].on{background:var(--mata);border-color:var(--mata);color:#fff}
+.tg[data-k=p].on{background:var(--pita);border-color:var(--pita);color:#fff}
+.tg small{display:block;font-size:12px;font-weight:500;opacity:.8}
+.oth{display:flex;align-items:center;justify-content:space-between;border:2px solid var(--line);border-radius:14px;padding:8px 10px 8px 14px}
+.oth .l{font-weight:600}.oth .l small{display:block;color:var(--muted);font-weight:400;font-size:12px}
+.step{display:flex;align-items:center;gap:10px}
+.step button{width:44px;height:44px;border-radius:12px;border:0;background:var(--soft-b);color:var(--balak);font-size:24px;font-weight:700}
+.step b{min-width:28px;text-align:center;font-size:22px;font-variant-numeric:tabular-nums}
+.total{display:flex;justify-content:space-between;align-items:baseline;margin:14px 2px}
+.total b{font-size:34px;font-variant-numeric:tabular-nums}
+.acts{display:flex;gap:8px}
+.primary{flex:1;border:0;background:var(--navy);color:var(--onnavy);border-radius:14px;padding:14px;font-weight:700;font-size:17px}
+.ghost{border:2px solid var(--line);background:none;border-radius:14px;padding:12px 14px;font-weight:600;color:var(--muted)}
+.giftline{margin-top:12px;display:flex;align-items:center;justify-content:space-between;font-size:14px;color:var(--muted)}
+
+.rep h2{font-size:17px;margin:18px 4px 8px}
+.tblw{overflow-x:auto;background:var(--card);border:1px solid var(--line);border-radius:12px}
+table{border-collapse:collapse;width:100%;font-size:14px;font-variant-numeric:tabular-nums}
+th,td{padding:8px 10px;text-align:right;border-bottom:1px solid var(--line);white-space:nowrap}
+th:first-child,td:first-child{text-align:left}
+th{font-size:12px;color:var(--muted);font-weight:600}
+tr.sum td{font-weight:700;border-bottom:0}
+.big{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.rep .seg{display:flex}
+table.det td,table.det th{padding:7px 8px}
+.big div{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px}
+.big b{display:block;font-size:28px;font-variant-numeric:tabular-nums}
+.big span{font-size:13px;color:var(--muted)}
+.exp{width:100%;margin-top:16px}
+.note{font-size:13px;color:var(--muted);margin:10px 4px}
+
+.toast{position:fixed;left:50%;bottom:calc(76px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:12px;font-size:14px;z-index:30;display:none;max-width:90vw;text-align:center}
+
+.me{display:inline-flex;align-items:center;gap:6px;margin-top:8px;border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.08);color:var(--onnavy);border-radius:999px;padding:3px 12px;font-size:13px}
+.addg{width:100%;border:2px dashed var(--line);background:none;border-radius:12px;padding:10px;font-weight:700;color:var(--muted);margin-top:8px}
+.gname{font-size:12px;color:var(--inam);font-weight:600}
+.fld{display:block;margin:10px 0}
+.fld span{display:block;font-size:13px;color:var(--muted);margin-bottom:4px}
+.fld input,.fld select{width:100%;font:inherit;font-size:16px;padding:10px 12px;border-radius:10px;border:1.5px solid var(--line);background:var(--card);color:var(--ink)}
+.set h2{font-size:17px;margin:20px 4px 8px}
+.box{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px}
+.grow{display:flex;align-items:center;gap:10px;padding:6px 0;border-bottom:1px solid var(--line)}
+.grow:last-child{border-bottom:0}
+.grow label{min-width:92px;font-weight:600;font-size:14px}
+.grow input{flex:1;min-width:0;font:inherit;padding:8px 10px;border-radius:8px;border:1.5px solid var(--line);background:var(--card);color:var(--ink)}
+.vol{border-bottom:1px solid var(--line);padding:10px 0}
+.vol:last-child{border-bottom:0}
+.volh{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.volh b{font-size:16px}
+.vol .chips{flex-wrap:wrap;overflow:visible}
+.del{border:0;background:none;color:var(--mata);font-weight:600;font-size:14px}
+.inline{display:flex;gap:8px}
+.inline input{flex:1;min-width:0;font:inherit;padding:10px 12px;border-radius:10px;border:1.5px solid var(--line);background:var(--card);color:var(--ink)}
+.inline button{border:0;background:var(--navy);color:var(--onnavy);border-radius:10px;padding:0 16px;font-weight:700}
+.row.guest .sr{color:var(--inam)}
+.stk{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--inam);border-radius:12px;padding:12px;margin-top:10px}
+.stk.out{border-left-color:var(--mata)}
+.stk-h{display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+.stk-h b{font-size:17px}.stk-h span{font-size:13px;color:var(--muted)}
+.stk-g{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:8px;text-align:center}
+.stk-g b{display:block;font-size:24px;font-variant-numeric:tabular-nums}
+.stk-g span{font-size:11px;color:var(--muted)}
+.stk-w{margin-top:8px;font-size:13px;color:var(--mata);font-weight:600}
+.al{margin-bottom:10px}.al .fld{margin:6px 0}
+.al-r{display:flex;gap:8px}.al-r .fld{flex:1;min-width:0}
+.al-s{display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px;font-size:13px;color:var(--muted);margin-top:6px}
+.al-s .del{margin-left:auto}
+#login{position:fixed;inset:0;z-index:50;background:var(--navy);display:none;align-items:center;justify-content:center;padding:24px}
+#login .card{background:var(--card);color:var(--ink);border-radius:18px;padding:22px;width:100%;max-width:380px;border-top:5px solid var(--gold)}
+#login h2{margin:0 0 2px;font-size:22px}
+#lgErr{color:var(--mata);font-size:14px;min-height:20px;margin-top:6px}
+.warn{background:#FFF4D6;color:#6B4B00;border:1px solid #F2D27A;border-radius:10px;padding:8px 12px;font-size:13px;margin:8px auto 0;max-width:760px;display:none}
+</style>
+</head>
+<body>
+<header>
+  <div class="top">
+    <div>
+      <div class="org">SMVS · Naroda</div>
+      <h1>ઇનામ વિતરણ ૨૦૨૬<br>હાજરી</h1>
+      <div class="live"><span class="dot" id="dot"></span><span id="liveTxt">Connecting…</span></div>
+      <button class="me" id="meBtn">👤 <span id="meTxt">તમારું નામ પસંદ કરો</span></button>
+    </div>
+    <div class="hall"><b id="hHall">0</b><span>સભામાં કુલ લોકો</span></div>
+  </div>
+  <div class="stats">
+    <div><strong id="hStu">0</strong>/ <span id="hTot">482</span> વિદ્યાર્થી</div>
+    <div><strong id="hFam">0</strong>વાલી + અન્ય</div>
+    <div><strong id="hGuest">0</strong>મહેમાન</div>
+    <div><strong id="hGift">0</strong>ઇનામ આપ્યા</div>
+  </div>
+</header>
+<div class="warn" id="warn"></div>
+
+<div class="controls" id="controls">
+  <div class="search">
+    <input id="q" type="search" inputmode="search" placeholder="SR NO કે નામ શોધો" autocomplete="off">
+    <div class="seg" id="seg">
+      <button data-g="A" class="on">બધા</button><button data-g="B">બાળક</button><button data-g="G">બાલિકા</button><button data-g="X">મહેમાન</button>
+    </div>
+  </div>
+  <div class="chips" id="stds"></div>
+  <div class="chips" id="filt"></div>
+</div>
+
+<main id="main"></main>
+
+<nav id="nav">
+  <button data-v="entry" class="on">પ્રવેશ</button>
+  <button data-v="gift">ઇનામ</button>
+  <button data-v="report">રિપોર્ટ</button>
+  <button data-v="set">સેટિંગ</button>
+</nav>
+
+<div id="sheetWrap">
+  <div class="scrim" id="scrim"></div>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="shN">
+    <div class="sh-sr" id="shSr"></div>
+    <div class="sh-n" id="shN"></div>
+    <div class="sh-s" id="shS"></div>
+    <div class="gname" id="shGn"></div>
+    <div class="tog">
+      <button class="tg" data-k="b">બાળક<small>Student</small></button>
+      <button class="tg" data-k="m">માતા<small>Mother</small></button>
+      <button class="tg" data-k="p">પિતા<small>Father</small></button>
+    </div>
+    <div class="oth">
+      <div class="l">અન્ય સભ્યો<small>Brother, sister, others</small></div>
+      <div class="step"><button id="xm" aria-label="Remove one">−</button><b id="xv">0</b><button id="xp" aria-label="Add one">+</button></div>
+    </div>
+    <div class="total"><span>કુલ આવ્યા</span><b id="shT">1</b></div>
+    <div class="acts">
+      <button class="ghost" id="shClear">Clear</button>
+      <button class="primary" id="shSave">Save arrival</button>
+    </div>
+    <div class="giftline" id="shGift"></div>
+  </div>
+</div>
+
+<div id="gsWrap">
+  <div class="scrim" id="gscrim"></div>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="gsT">
+    <div class="sh-n" id="gsT">મહેમાન ઉમેરો</div>
+    <div class="sh-s">Guests who are not in the student list</div>
+    <label class="fld"><span>નામ</span><input id="gsName" autocomplete="off" placeholder="e.g. Rameshbhai Patel"></label>
+    <label class="fld"><span>મંડળ / સંદર્ભ (optional)</span><input id="gsRef" autocomplete="off" placeholder="Mandal, or whose relative"></label>
+    <div class="oth">
+      <div class="l">કેટલા લોકો<small>Including this person</small></div>
+      <div class="step"><button id="gsm" aria-label="Remove one">−</button><b id="gsn">1</b><button id="gsp" aria-label="Add one">+</button></div>
+    </div>
+    <div class="acts" style="margin-top:16px">
+      <button class="ghost" id="gsDel">Delete</button>
+      <button class="primary" id="gsSave">Save guest</button>
+    </div>
+  </div>
+</div>
+<div id="login" role="dialog" aria-modal="true" aria-labelledby="lgT"><div class="card">
+  <div class="org" style="color:var(--inam)">SMVS · Naroda</div>
+  <h2 id="lgT">ઇનામ વિતરણ ૨૦૨૬ Login</h2>
+  <label class="fld"><span>Login ID</span><input id="lgId" autocapitalize="none" autocomplete="username"></label>
+  <label class="fld"><span>Password</span><input id="lgPw" type="password" autocomplete="current-password"></label>
+  <div id="lgErr"></div>
+  <button class="primary" id="lgGo" style="width:100%">Login</button>
+</div></div>
+<div class="toast" id="toast"></div>
+
+<!-- ===== Firebase (live sync across phones) =====
+     1) Create a free project at https://console.firebase.google.com
+     2) Build > Firestore Database > Create database (start in production mode, pick a nearby region)
+     3) Project settings (gear icon) > General > "Your apps" > Add app > Web (</>) > copy the config object
+     4) Paste your own values below, replacing the placeholders
+     5) Firestore Database > Rules: paste the rules from firestore.rules in this repo, then Publish
+     Full walkthrough: see README.md -->
+<script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore-compat.js"></script>
+<script>
+const firebaseConfig = {
+  apiKey: "AIzaSyDAUsSH742RoVedTevQqdfmNjgYrAJtHqM",
+  authDomain: "inamvitran.firebaseapp.com",
+  projectId: "inamvitran",
+  storageBucket: "inamvitran.firebasestorage.app",
+  messagingSenderId: "42938292493",
+  appId: "1:42938292493:web:68ea2089eb8edaa3163844"
+};
+</script>
+
+<script>
+const ROSTER = [["B","Balvatika","BV04","Rivan Jatinbhai Panchal","Suraj Park"],["B","Balvatika","BV07","Kiyan Chiragbhai Patel","Naroda Mandir"],["B","Balvatika","BV09","Hitarth Rahul Kumar Patel","Naroda Smart City"],["B","Balvatika","BV08","Dhruvansh Kamleshbhai Prajapati","Naroda Mandir"],["B","Balvatika","BV06","Ved Rakeshbhai Chauhan","Murlidhar Society"],["B","Balvatika","BV03","Valand Krishil Nareshkumar","Swaminarayan Park"],["B","Balvatika","BV02","Abhirajsinh Rajvirsinh Kumpavat","Swaminarayan Park"],["B","Balvatika","BV01","Jiyansh Hiralkumar Patel","Swaminarayan Park"],["B","Junior KG","J.KG03","Madhav Prashantbhai Sorathiya","Naroda Mandir"],["B","Junior KG","J.KG04","Atharv Divyangkumar Nayi","Suraj Park"],["B","Junior KG","J.KG01","Yaksh Hiren Detroja","Murlidhar Society"],["B","Junior KG","J.KG02","Harsh Vishalkumar Bhalu","Naroda Mandir"],["B","Senior KG","S.KG04","Urvin Pamin Patel","Murlidhar Society"],["B","Senior KG","S.KG08","Vatsal Jigneshbhai Patel","Noblenagar"],["B","Senior KG","S.KG03","Mahir Rakeshkumar Barot","Mangalmurti"],["B","Senior KG","S.KG02","Yashraj Ghanshyambhai Khatana","Shyamal Park"],["B","Senior KG","S.KG01","Aarush Puren Patel","Hanspura"],["B","Senior KG","S.KG06","Mantra Ajaybhai Prajapati","Naroda Mandir"],["B","Senior KG","S.KG07","Shlok Ajaybhai Prajapati","Naroda Mandir"],["B","Senior KG","S.KG05","Aditya Maulikkumar Patel","Murlidhar Society"],["B","Senior KG","S.KG09","Daxraj Arvindsinh Chauhan","Noblenagar"],["B","Std 1","111","Herin Tarang Patel","Murlidhar Society"],["B","Std 1","118","Mantra Sagarkumar Panchal","Naroda Mandir"],["B","Std 1","110","Tejas Bhavik Kumar Devaria","Murlidhar"],["B","Std 1","107","Riyansh Kumar Kiran Kumar Panchal","Suraj Park"],["B","Std 1","115","Yug Rohilbhai Modi","Shyamal Park"],["B","Std 1","114","Vivan Sanjay Prajapati","Murlidhar Society"],["B","Std 1","105","Arth Aksykumar Patel","Karnavati Park"],["B","Std 1","123","Rudrarajsinh Sahadevsinh Zala","Noblenagar"],["B","Std 1","106","Rudhr Piyushbhai Prajapati","Suraj Park"],["B","Std 1","108","Rajveersinh Manishsinh Rathod","Mangalmurti"],["B","Std 1","104","Nikunj Nitinbhai Hadiya","Hanspura"],["B","Std 1","112","Darshan Jigneshkumar Patel","Murlidhar Society"],["B","Std 1","113","Yug Hirenkumar Patel","Murlidhar Society"],["B","Std 1","125","Mitansh Sunilbhai Suthar","Mangalmurti"],["B","Std 1","124","Vedarth Bhavikkumar Upadhyay","Satva Balaji Residency"],["B","Std 1","117","Vedant Anilbhai Prajapati","Naroda Mandir"],["B","Std 1","122","Naksh Harshadbhai Prajapati","Shree Hari Gift City"],["B","Std 1","102","Nishchay Mitulkumar Modi","Abs Naroda"],["B","Std 1","119","Dhruvil Mayurbhai Gadhvi","Naroda Mandir"],["B","Std 1","120","Aarviksinh Pankajsinh Chavda","Naroda Smart City"],["B","Std 1","121","Shreyansh Kalpeshbhai Raval","Naroda Smart City"],["B","Std 1","116","Kenil Hasmukhbhai Teli","Naroda Mandir"],["B","Std 1","101","Priyansh Dipakbhai Koshti","Hanspura"],["B","Std 1","103","Kriyan Ashvinbhai Patel","Swaminarayan Park"],["B","Std 2","215","Kavan Dharmendrakumar Shah","Mangalmurti"],["B","Std 2","202","Ved Rakeshbhai Patel","Dev Aashish Divine"],["B","Std 2","208","Ansh Hiteshbhai Patel","Karnavati Park"],["B","Std 2","224","Naitik Divyeshbhai Parmar","Naroda Mandir"],["B","Std 2","207","Hidansh Hirenbhai Patel","Karnavati Park"],["B","Std 2","211","Yash Jaiminkumar Chauhan","Kumarshala"],["B","Std 2","221","Shlok Parthbhai Modi","Naroda Mandir"],["B","Std 2","223","Sneh Kalpesh Kumar Patel","Shree Hari Gift City"],["B","Std 2","219","Dhruvraj Vikramsinh Solanki","Shyamal Park"],["B","Std 2","236","Daivik Kaushik Patel","Nilkanth Residency"],["B","Std 2","222","Purv Milanbhai Solanki","Naroda Mandir"],["B","Std 2","225","Shreeji Tejendrabhai Kaila","Naroda Mandir"],["B","Std 2","213","Dhruvansh Sunilkumar Barot","Mangalmurti"],["B","Std 2","206","Takshrajsinh Kirpalsinh Parmar","Swaminarayan Park"],["B","Std 2","233","Pratyushraj Jaypratap Rajput","Noblenagar"],["B","Std 2","214","Kevin Dharmendrakumar Shah","Mangalmurti"],["B","Std 2","226","Meet Maheshbhai Prajapati","Naroda Smart City"],["B","Std 2","227","Dhyey Pankajkumar Patel","Noblenagar"],["B","Std 2","210","Suryarajsinh Pradhyumansinh Solanki","Shyamal Park"],["B","Std 2","217","Suryarajsinh Pradhyumansinh Solanki","Shyamal Park"],["B","Std 2","228","Divyaraj Harishbhai Sadhu","Noblenagar"],["B","Std 2","209","Jaykumar Bhaveshbhai Parmar","Shyamal Park"],["B","Std 2","234","Shauryarajsinh Dilipsinh Vaghela","Saijpur2"],["B","Std 2","218","Yogesh Shravanram Prajapati","Shyamal Park"],["B","Std 2","205","Hiyan Sanjaykumar Patel","Swaminarayan Park"],["B","Std 2","220","Maharsh Pareshkumar Prajapati","Naroda Mandir"],["B","Std 2","235","Naksh Ketanbhai Patel","Abs Naroda"],["B","Std 2","232","Ronak Manish Bhai Maheriya","Noblenagar"],["B","Std 2","231","Kunal Jitendrasinh Zala","Noblenagar"],["B","Std 2","212","Jiyan Gautamkumar Barot","Mangalmurti"],["B","Std 2","230","Vansh Mahesh Mulchandani","Noblenagar"],["B","Std 2","204","Satyapalsinh Jayendrasinh Gohil","Excellent School"],["B","Std 2","216","Siddharth Bhagirathsinh Chavda","Murlidhar Society"],["B","Std 2","203","Harshvardhan Sukhdevsinh Gohil","Dev Aashish Divine"],["B","Std 2","201","Hayan Sandip Shah","Dev Aashish Divine"],["B","Std 2","229","Anurag Dinesh Kumar","Noblenagar"],["B","Std 3","304","Vansh Yogeshbhai Prajapati","Abs Naroda"],["B","Std 3","307","Bhavyaraj Miteshbhai Solanki","Karnavati Park"],["B","Std 3","309","Henil Chetankumar Prajapati","Mangalmurti"],["B","Std 3","306","Bhavy Nitin Bhai Hadiya","Hanspura"],["B","Std 3","313","Samarth Sachinkumar Patel","Nilkanth Residency"],["B","Std 3","302","Shlok Chiragbhai Prajapati","Abs Naroda"],["B","Std 3","308","Jinit Mukeshbhai Prajapati","Suraj Park"],["B","Std 3","305","Dwij Chintan Bhai Rajguru","Dev Aashish Divine"],["B","Std 3","311","Krishiv Pranavbhai Patel","Satva Balaji Residency"],["B","Std 3","312","Dhiyan Vicky Patel","Nilkanth Residency"],["B","Std 3","310","Kiaan Ketulbhai Patel","Saijpur - 1"],["B","Std 3","303","Ayush Bhaveshkumar Prajapati","Abs Naroda"],["B","Std 3","301","Shriji Harikrishna Bhavsar","Abs Naroda"],["B","Std 4","422","Panth Bipinkumar Manavadariya","Nilkanth Residency"],["B","Std 4","413","Panth Parimalkumar Chauhan","Kumarshala"],["B","Std 4","421","Harshil Bhavin Kumar Gohil","Noblenagar"],["B","Std 4","419","Dhruvansh Falgunbhai Sathwara","Naroda Mandir"],["B","Std 4","408","Hridank Ankurbhai Patel","Dev Aashish Divine"],["B","Std 4","402","Divyam Tejasbhai Chauhan","Abs Naroda"],["B","Std 4","404","Divyam Vipulkumar Patel","Abs Naroda"],["B","Std 4","405","Takshrajsinh Virendrasinh Parmar","Abs Naroda"],["B","Std 4","407","Hetansh Hitendr Kumar Patel","Dev Aashish Divine"],["B","Std 4","415","Hevin Hareshbhai Koriya","Murlidhar Society"],["B","Std 4","420","Jiyansh Nishantbhai Trivedi","Naroda Smart City"],["B","Std 4","418","Purab Dhiraj Kumar Nai","Shree Hari Gift City"],["B","Std 4","417","Nilay Kamleshbhai Prajapati","Naroda Mandir"],["B","Std 4","410","Purvarajsinh Prakashsinh Chavada","Karnavati Park"],["B","Std 4","414","Kulveersinh Jitendrakumar Rathod","Mangalmurti"],["B","Std 4","403","Rihan Bhaveshkumar Valand","Abs Naroda"],["B","Std 4","401","Darsh Kiranbhai Patel","Abs Naroda"],["B","Std 4","406","Shivansh Prakashkumar Sonagra","Abs Naroda"],["B","Std 4","411","Soham Vijay Tripathi","Suraj Park"],["B","Std 4","409","Aarav Dhavalbhai Mistry","Excellent School"],["B","Std 4","416","Kishan Shivsankar Prajapati","Shyamal Park"],["B","Std 4","412","Samarth Niravbhai Darji","Shyamal Park"],["B","Std 5","523","Kavan Harshadbhai Patel","Satva Balaji Residency"],["B","Std 5","532","Partham Kalpeshbhai Patel","Nilkanth Residency"],["B","Std 5","502","Vedant Aswinkumar Patel","Abs Naroda"],["B","Std 5","505","Vansh Ashishkumar Patel","Abs Naroda"],["B","Std 5","528","Aksh Kaushikbhai Prajapati","Saijpur2"],["B","Std 5","526","Devansh Vinodkumar Prajapati","Saijpur2"],["B","Std 5","511","Het Keyurkumar Prajapati","Excellent School"],["B","Std 5","510","Harshil Rajend Bhai Patel","Dev Aashish Divine"],["B","Std 5","515","Dhruv Ravibhai Sevra","Kumarshala"],["B","Std 5","516","Dhairy Himanshubhai Chauhan","Kumarshala"],["B","Std 5","513","Swar Sanjay Bhai Patel","Excellent School"],["B","Std 5","522","Mann Nikunjbhai Joshi","Shree Hari Gift City"],["B","Std 5","531","Swar Keyurbhai Prajapati","Abs Naroda"],["B","Std 5","503","Shlok Jayeshbhai Patel","Abs Naroda"],["B","Std 5","508","Namra Naineshkumar Prajapati","Abs Naroda"],["B","Std 5","518","Jayveer Pradhyumansinh Solanki","Shyamal Park"],["B","Std 5","525","Aayush Akshaybhai Makani","Satva Balaji Residency"],["B","Std 5","527","Manav Ghanahyambhai Patel","Saijpur2"],["B","Std 5","512","Naksh Sunilbhai Rathod","Excellent School"],["B","Std 5","519","Mahendrasinh Jasvantsinh Rajput","Shyamal Park"],["B","Std 5","504","Prince Hiteshkumar Panchal","Abs Naroda"],["B","Std 5","509","Kayan Maheshbhai Parmar","Naroda Mandir"],["B","Std 5","520","Parth Vishalbhai Dalwadi","Naroda Mandir"],["B","Std 5","506","Virat Daroga Baghel","Abs Naroda"],["B","Std 5","530","Naksh Jigneshkumar Patel","Abs Naroda"],["B","Std 5","514","Hitansh Miteshbhai Soni","Kumarshala"],["B","Std 5","524","Vansh Samirkumar Trivedi","Saijpur - 1"],["B","Std 5","517","Arya Dharmesh Patel","Murlidhar Society"],["B","Std 5","529","Kirtirajsinh Jabbarsinh Chauhan","Saijpur2"],["B","Std 5","507","Naman Gauravbhai Kamboya","Abs Naroda"],["B","Std 5","521","Preyansh Kalpeshbhai Raval","Naroda Smart City"],["B","Std 6","618","Darsh Dushyantkumar Prajapati","Abs Naroda"],["B","Std 6","610","Het Hardikkumar Rao","Swaminarayan Park"],["B","Std 6","614","Jenish Himanshukumar Prajapati","Saijpur2"],["B","Std 6","619","Rudrav Hirenkumar Modi","Abs Naroda"],["B","Std 6","609","Arya Bhavesh Bhai Patel","Excellent School"],["B","Std 6","603","Shlok Nimeshbhai Patel","Abs Naroda"],["B","Std 6","604","Devansh Alpeshbhai Chauhan","Abs Naroda"],["B","Std 6","613","Harshvardhan Kuldeep Champavat","Noblenagar"],["B","Std 6","608","Nisarg Sanjaygiri Goswami","Excellent School"],["B","Std 6","606","Darshan Rajesh Panchal","Abs Naroda"],["B","Std 6","605","Ashirvad Rameshbhai Panchotiya","Abs Naroda"],["B","Std 6","617","Krishna Vijaybhai Torani","Abs Naroda"],["B","Std 6","602","Diyan Jigneshbhai Prajapati","Abs Naroda"],["B","Std 6","612","Jenish Pareshbhai Patel","Mangalmurti"],["B","Std 6","601","Pratham Hardikbhai Patel","Abs Naroda"],["B","Std 6","616","Aryankumar Rajeshkumar Dewani","Abs Naroda"],["B","Std 6","607","Dvij Rravinbhai Shobhasana","Excellent School"],["B","Std 6","611","Ansh Krunalbhai Panchal","Kumarshala"],["B","Std 6","615","Yuvraj Rameshbhai Sondagar","Saijpur2"],["B","Std 7","709","Naksh Jaiminkumar Chauhan","Kumarshala"],["B","Std 7","720","Meetrajsinh Mahendrasinh Zala","Abs Naroda"],["B","Std 7","715","Kirtan Sanjaykumar Patel","Abs Naroda"],["B","Std 7","705","Devarsh Dilipkumar Patel","Abs Naroda"],["B","Std 7","702","Krishag Sagarbhai Prajapati","Abs Naroda"],["B","Std 7","711","Devraj Vikramsinh Solanki","Shyamal Park"],["B","Std 7","707","Samarth Pravinkumar Prajapati","Karnavati Park"],["B","Std 7","704","Kahan A Gadhavi","Abs Naroda"],["B","Std 7","708","Het Jatinbhai Panchal","Karnavati Park"],["B","Std 7","701","Vrund Vishalbhai Patel","Abs Naroda"],["B","Std 7","719","Jaykumar Sanjaybhai Pagi","Abs Naroda"],["B","Std 7","703","Ghanshyam Tejasbhai Chauhan","Abs Naroda"],["B","Std 7","712","Meet Viralbhai Jani","Naroda Mandir"],["B","Std 7","716","Dhyan Priyakant Patel","Abs Naroda"],["B","Std 7","714","Henil Lalitbhai Patel","Satva Balaji Residency"],["B","Std 7","713","Mitv Jayendrakumar Chaudhari","Naroda Smart City"],["B","Std 7","706","Henil Jigneshbhai Suthar","Swaminarayan Park"],["B","Std 7","717","Himanshukumar Vijaybhai Panchal","Abs Naroda"],["B","Std 7","718","Dhaval Dipakkumar Valand","Abs Naroda"],["B","Std 7","710","Devraj Jigarbhai Shekh","Murlidhar Society"],["B","Std 8","801","Kirtan Himanshubhai Chauhan","Abs Naroda"],["B","Std 8","806","Deep Pareshbhai Koladiya","Naroda Mandir"],["B","Std 8","810","Pratik Jaypratap Singh Rajput","Noblenagar"],["B","Std 8","802","Krishna Hardikkumar Rao","Swaminarayan Park"],["B","Std 8","809","Rudrarajsinh Jitendrasinh Vaghela","Shree Hari Gift City"],["B","Std 8","804","Ankit Shivsankar Prajapati","Shyamal Park"],["B","Std 8","805","Rudra Narenbhai Patel","Murlidhar Society"],["B","Std 8","811","Nirman Hitendrabhai Khatri","Saijpur2"],["B","Std 8","813","Rudhr Gaurangbhai Prajapati","Abs Naroda"],["B","Std 8","803","Naksh Jayeshbhai Prajapati","Karnavati Park"],["B","Std 8","807","Jeet Nitin Kumar Panchal","Shree Hari Gift City"],["B","Std 8","808","Het Amit Bhai Darji","Shree Hari Gift City"],["B","Std 8","814","Ansh Kamleshbhai Panchal","Abs Naroda"],["B","Std 9","908","Jenil Sunilbhai Prajapati","Saijpur2"],["B","Std 9","905","Nisarg Jaydipbhai Patel","Mangalmurti"],["B","Std 9","906","Mihir Govind Bhai Nai","Shree Hari Gift City"],["B","Std 9","901","Darshil Jigneshkumar Prajapati","Abs Naroda"],["B","Std 9","903","Jainesh Niravkumar Joshi","Abs Naroda"],["B","Std 9","907","Krish Bharatbhai Prajapati","Saijpur2"],["B","Std 9","904","Aayushkumar K Amin","Abs Naroda"],["B","Std 9","909","Samrth Gangaram Patil","Abs Naroda"],["B","Std 9","902","Rishikumar Minkeshbhai Patel","Abs Naroda"],["B","Std 10","1006","Dharam Sanjaykumar Patel","Kishor Mandal"],["B","Std 10","1002","Hetkumar Jigneshbhai Panchotiya","Abs Naroda"],["B","Std 10","1009","Vadan Manishbhai Thoria","Saijpur - 1"],["B","Std 10","1007","Tirth Dushyant Kumar Prajapati","Kishor Mandal"],["B","Std 10","1008","Ronit Manharkumar Mistry","Kishor Mandal"],["B","Std 10","1004","Meet Nitinbhai Prajapati","Karnavati Park"],["B","Std 10","1010","Hari Manishbhai Thoria","Saijpur - 1"],["B","Std 10","1005","Hit Shaileshkumar Patel","Kishor Mandal"],["B","Std 10","1003","Hit Shaileshkumar Patel","Abs Naroda"],["B","Std 10","1001","Henil Anandkumar Prajapati","Abs Naroda"],["B","Std 10","1011","Mitrajsinh Jitendrasinh Vaghela","Saijpur2"],["B","Std 11","1103","Ved Mayankbhai Prajapati","Kishor Mandal"],["B","Std 11","1104","Deep Satishbhai Prajapati","Saijpur2"],["B","Std 11","1101","Krish Pankaj Prajapati","Kishor Mandal"],["B","Std 11","1102","Naitik Bharatbhai Prajapati","Kishor Mandal"],["B","Std 11","1105","Aryamansinh Vanrajsinh Chavda","Saijpur2"],["B","Std 12","1202","Harivadan Dharmeshbhai Patel","Abs Naroda"],["B","Std 12","1204","Mitrajsinh Sanjaysinh Sisodiya","Saijpur2"],["B","Std 12","1203","Dhruvkumar Bhaveshbhai Chauhan","Kishor Mandal"],["B","Std 12","1201","Hetu Niravbhai Darji","Abs Naroda"],["B","College","SE201","Divy Amit Bhai Darji","Shree Hari Gift City"],["B","College","SE202","Abhay Praful Bhai Limbad","Shree Hari Gift City"],["B","College","SE501","Vaidik Shaileshbhai Patel","Abs Naroda"],["B","College","SE602","Rishi Satishbhai Dabgar","Saijpur2"],["B","College","SE601","Jaivik Sureshbhai Prajapati","Saijpur2"],["B","College","SE701","Vivek Bhagvanbhai Bhavsar","Saijpur - 1"],["G","Balvatika","BV02","Prachi Pankajbhai Panchal","Akshardham"],["G","Balvatika","BV08","Aarya Pareshbhai Koladiya","Swaminarayan Mandir"],["G","Balvatika","BV05","Anvika Vikaschandra Shukala","Gokuldham"],["G","Balvatika","BV03","Divyanshi Kamleshkumar Parmar","Akshardham"],["G","Balvatika","BV04","Praptiben Chintanbhai Prajapati","Akshardham"],["G","Balvatika","BV09","Kanvi Krunalbhai Patel","Swaminarayan Mandir"],["G","Balvatika","BV07","Vedika Rameshbhai Darji","Nobel Nagar"],["G","Balvatika","BV06","Samarthi Mukesh Modi","Mangalmurti"],["G","Balvatika","BV01","Priya Priyakantbhai Patel","Swaminarayan Mandir"],["G","Junior KG","J.KG14","Diksha Amitkumar Patel","Swaminarayan Mandir"],["G","Junior KG","J.KG02","Dhyani Yogeshbhai Prajapati","Bansidhar"],["G","Junior KG","J.KG01","Mishika Hardikbhai Jaiswal","Akshardham"],["G","Junior KG","J.KG10","Niya Harshbhai Takkar","Swaminarayan Mandir"],["G","Junior KG","J.KG09","Niya Harshbhai Takkar","Swaminarayan Mandir"],["G","Junior KG","J.KG11","Ditya Dipeshkumar Parmar","Swaminarayan Mandir"],["G","Junior KG","J.KG15","Krima Manojkumar Prajapati","Swaminarayan Mandir"],["G","Junior KG","J.KG07","Manya Jignesh Bhai Patel","Silver"],["G","Junior KG","J.KG06","Siya Ankitkumar Shah","New Shahibaug 3"],["G","Junior KG","J.KG08","Tanya Bhargavbhai Parmar","Silver"],["G","Junior KG","J.KG03","Sloka Jaypalsinh Vagela","Hanspura"],["G","Junior KG","J.KG04","Chahi Harshkumar Darji","Hanspura 1"],["G","Junior KG","J.KG13","Moksha Pradipbhai Patel","Swaminarayan Mandir"],["G","Junior KG","J.KG05","Ivanshika Govindkumar Vyas","New Shahibaug 3"],["G","Junior KG","J.KG12","Rajviba Brijrajsinh Vaghela","Swaminarayan Mandir"],["G","Senior KG","S.KG06","Swara Kiranbhai Prajapati","Bansidhar"],["G","Senior KG","S.KG05","Swara Kiranbhai Prajapati","Bansidhar"],["G","Senior KG","S.KG02","Ditya Chetanbhai Patel","Bansidhar"],["G","Senior KG","S.KG03","Riva Jatinbhai Panchal","Bansidhar"],["G","Senior KG","S.KG08","Yashvi Tushar Vaishnav","Gokuldham"],["G","Senior KG","S.KG09","Yashvi Tushar Vaishnav","Gokuldham"],["G","Senior KG","S.KG14","Vriti Hirenkumar Vaniya","New Shahibaug 3"],["G","Senior KG","S.KG15","Aadhya Jayeshbhai Solanki","Swaminarayan Mandir"],["G","Senior KG","S.KG01","Smruti Sandipbhai Thakkar","Akshardham"],["G","Senior KG","S.KG17","Navyakuwarba Hardipsinh Vaghela","Swaminarayan Mandir"],["G","Senior KG","S.KG04","Aashi Nikunjbhai Patel","Bansidhar"],["G","Senior KG","S.KG07","Navaya Jitendrabhai Patel","Gokuldham"],["G","Senior KG","S.KG11","Saniya Nirav Patel","Mangalmurti"],["G","Senior KG","S.KG12","Vedika Sanjaybhai Sharma","Murlidhar"],["G","Senior KG","S.KG10","Trishika Nirajbhai Drivedi","Hanspura 1"],["G","Senior KG","S.KG16","Dharmi Nirajbhai Koradiya","Swaminarayan Mandir"],["G","Senior KG","S.KG13","Mayra Juhilkumar Patel","New Shahibaug 2"],["G","Std 1","119","Dhruvibaa Vedant Singh Ramlavat","Silver"],["G","Std 1","114","Adrika Ronak Bhavsar","New India Colony 2"],["G","Std 1","121","Sakshi Ghanshyambhai Patel","Swaminarayan Mandir"],["G","Std 1","103","Durva Nileshbhai Patel","Bansidhar"],["G","Std 1","110","Diva Hardik Panchal","Mangalmurti"],["G","Std 1","120","Kyara Vishal Kumar Patel","Silver"],["G","Std 1","116","Dishani Kamleshbhai Pandya","Nobel Nagar"],["G","Std 1","113","Drashti Vijaykumar Prajapati","Murlidhar"],["G","Std 1","122","Moksha Dhavalbhai Patel","Swaminarayan Mandir"],["G","Std 1","117","Anannya Shubhambhai Rana","Nobel Nagar"],["G","Std 1","104","Hetvi Kuldeepbhai Maru","Dev Ashish"],["G","Std 1","105","Prisha Amitbhai Modi","Dev Ashish"],["G","Std 1","107","Aashvi Dhavalbhai Raval","Gokuldham"],["G","Std 1","118","Navya Chetanbhai Solanki","Nobel Nagar"],["G","Std 1","115","Priyanshikunwarba Upendrasinh Champavat","New Shahibaug 3"],["G","Std 1","108","Shivanya Pravinbhai Patil","Hanspura 1"],["G","Std 1","112","Manya Chirag Kumar Patel","Mangalmurti"],["G","Std 1","102","Jil Nirajbhai Panchal","Bansidhar"],["G","Std 1","111","Mayra Chirag Kumar Patel","Mangalmurti"],["G","Std 1","109","Manya Jayeshbhai Mistry","Hanspura 1"],["G","Std 1","101","Mahi Kalpeshbhai Chunara","Akshardham"],["G","Std 2","225","Janki Alpeshbhai Prajapati","Shyamal Park"],["G","Std 2","224","Dhivitiben Dilipbhai Prajapati","Shyamal Park"],["G","Std 2","226","Rutvibahen Rahulbhai Prajapati","Shyamal Park"],["G","Std 2","231","Dhanvee Sandeepakumar Patel","Swaminarayan Mandir"],["G","Std 2","230","Prisha Nitinkumar Manvar","Swaminarayan Mandir"],["G","Std 2","232","Priyaba Direndrashin Vaghela","Swaminarayan Mandir"],["G","Std 2","209","Feni Hirenkumar Dharsandiya","Hanspura"],["G","Std 2","236","Moksha Nimeshkumar Suthar","Swaminarayan Mandir"],["G","Std 2","207","Mishwa Shrikantbhai Patel","Hanspura"],["G","Std 2","202","Bhavya Jashelal Damor","Dev Ashish"],["G","Std 2","223","Priyanshi Jayeshbhai Patel","Shyamal Park"],["G","Std 2","203","Tanvi Harshadbhai Panchal","Dev Ashish"],["G","Std 2","215","Gopi Narendra Bhai Modi","Mangalmurti"],["G","Std 2","214","Yashvi Naresh Bhai Tank","Mangalmurti"],["G","Std 2","206","Shivani Vikeshbhai Prajapati","Gokuldham"],["G","Std 2","205","Shivani Vikeshbhai Prajapati","Gokuldham"],["G","Std 2","220","Angel Dharmeshbhai Shrimali","Nobel Nagar"],["G","Std 2","237","Helisha Sanketkumar Panchal","Swaminarayan Mandir"],["G","Std 2","201","Yasvi Anupambhai Panchal","Bansidhar"],["G","Std 2","227","Shreeja Dharmendrashih Gadhavi","Swaminarayan Mandir"],["G","Std 2","222","Tanvi Rakeshbhai Thakor","Saijpur"],["G","Std 2","234","Vyoniben Kuldipkumar Prajapati","Swaminarayan Mandir"],["G","Std 2","218","Ishika Vinod Bhai Chavda","Nobel Nagar"],["G","Std 2","213","Pakhi Dinesh Jayswal","Mangalmurti"],["G","Std 2","204","Jiya Ravibhai Patel","Gokuldham"],["G","Std 2","208","Rishva Ashishbhai Modi","Hanspura"],["G","Std 2","210","Kavya Bhavikbhai Raval","Hanspura 1"],["G","Std 2","219","Hardika Nareshbhai Kharadi","Nobel Nagar"],["G","Std 2","221","Dhanvi Pintubhai Solanki","Nobel Nagar"],["G","Std 2","235","Sakshi Kuldipbhai Suthar","Swaminarayan Mandir"],["G","Std 2","212","Navya Rajendrakumar Patel","Hanspura 1"],["G","Std 2","233","Jeshta Mihirbhai Surti","Swaminarayan Mandir"],["G","Std 2","229","Dharmi Amitkumar Raval","Swaminarayan Mandir"],["G","Std 2","228","Shradha Priteshkumar Panchal","Swaminarayan Mandir"],["G","Std 2","217","Misha Manishbhai Patel","New Shahibaug 2"],["G","Std 2","216","Krisha Parth Patel","New Shahibaug 2"],["G","Std 3","316","Helly Pravinbhai Thakkar","Swaminarayan Mandir"],["G","Std 3","306","Visva Bhaveshbhai Prajapati","Bansidhar"],["G","Std 3","305","Visva Bhaveshbhai Prajapati","Bansidhar"],["G","Std 3","309","Vishva Piyushkumar Koriya","Murlidhar"],["G","Std 3","315","Jency Jatinkumar Patel","Swaminarayan Mandir"],["G","Std 3","313","Dhyani Chetankumar Chavda","Nobel Nagar"],["G","Std 3","307","Yasvi Hardikbhai Josi","Bansidhar"],["G","Std 3","301","Krisha Ashwinbhai Patel","Abs Primary"],["G","Std 3","311","Aarvi Umesh Patel","New Shahibaug 2"],["G","Std 3","302","Henvi Rohitbhai Prajapati","Abs Primary"],["G","Std 3","310","Drisha Kaushikbhai Patel","New Shahibaug 2"],["G","Std 3","314","Yashri Krutikkumar Chaudhari","Swaminarayan Mandir"],["G","Std 3","308","Swara Mangeshkumar Shah","Devashish Pride"],["G","Std 3","312","Tanu Amrutbhai Chavda","Nobel Nagar"],["G","Std 3","304","Vidhi Alpeshbhai Panchal","Akshardham"],["G","Std 3","303","Vidhi Alpeshbhai Panchal","Akshardham"],["G","Std 3","317","Viradiya Bansari Vinaybhai","Swaminarayan Mandir"],["G","Std 4","407","Jiya Tusharbhai Sathwara","Hanspura"],["G","Std 4","405","Yashvi Jimmybhai Patel","Akshardham"],["G","Std 4","404","Diya Ankit Vyas","Abs Primary"],["G","Std 4","416","Champawat Swara Dharmendra Singh","Silver"],["G","Std 4","419","Druva Falgunbhai Sathavara","Swaminarayan Mandir"],["G","Std 4","420","Manushree Amitkumar Patel","Ved"],["G","Std 4","403","Nistha Rohitbhai Patel","Abs Primary"],["G","Std 4","418","Sakshi Jayeshbhai Modi","Swaminarayan Mandir"],["G","Std 4","406","Kashish Dhavalbhai Raval","Gokuldham"],["G","Std 4","413","Pihu Girishbhai Sorte","Saijpur"],["G","Std 4","412","Paridhi Hareshbhai Satardekar","Nobel Nagar"],["G","Std 4","417","Mishika Hasmukhbhai Teli","Swaminarayan Mandir"],["G","Std 4","411","Sakshi Rajeshbhai Rathod","Nobel Nagar"],["G","Std 4","408","Vedanshi Vijaybhai Vadhajara","Nobel Nagar"],["G","Std 4","414","Mahi Rakeshbhai Thakor","Saijpur"],["G","Std 4","401","Devanshi Hareshkumar Chavada","Abs Primary"],["G","Std 4","410","Riddhi Manoj Bhai Vadhajara","Nobel Nagar"],["G","Std 4","409","Riddhi Manoj Bhai Vadhajara","Nobel Nagar"],["G","Std 4","415","Trisha Ganeshbhai Soni","Saijpur"],["G","Std 4","402","Dhimahi Khushalbhai Vyas","Abs Primary"],["G","Std 5","526","Bhati Nancy Jaydeep Singh","Silver"],["G","Std 5","508","Mira Parimalbhai Chauhan","Akshardham"],["G","Std 5","516","Ananya Vikaschandra Shukala","Gokuldham"],["G","Std 5","531","Tithee Dikshitkumar Patel","Swaminarayan Mandir"],["G","Std 5","518","Mahi Kirankumar Raval","New India Colony 2"],["G","Std 5","503","Khushi Savankumar Vachhani","Abs Primary"],["G","Std 5","509","Mahi Pravinbhai Patel","Akshardham"],["G","Std 5","502","Priyanshi Shaileshkumar Valand","Abs Primary"],["G","Std 5","501","Priyanshi Shaileshkumar Valand","Abs Primary"],["G","Std 5","510","Kavya Himatbhai Patel","Bansidhar"],["G","Std 5","517","Navya Dipakbhai Koshti","Hanspura"],["G","Std 5","527","Kanishtha Surendra Singh Rathore","Silver"],["G","Std 5","533","Hency Bhavinbhai Manvar","Swaminarayan Mandir"],["G","Std 5","522","Reeja Rajnikant Patel","New Shahibaug 2"],["G","Std 5","532","Saumya Miralkumar Vachhani","Swaminarayan Mandir"],["G","Std 5","530","Jency Riteshkumar Pawar","Swaminarayan Mandir"],["G","Std 5","515","Dhurvi Vishalbhai Panchal","Gokuldham"],["G","Std 5","525","Krupalibaa Rajendrasinh Chavda","Shyamal Park"],["G","Std 5","505","Hetvi Pratikbhai Parmar","Abs Primary"],["G","Std 5","512","Suhani Ajaykumar Daslaniya","Dev Ashish"],["G","Std 5","506","Dixa Hemangkumar Suthar","Abs Primary"],["G","Std 5","523","Vaishnavi Kaushikkumar Raval","New Shahibaug 3"],["G","Std 5","520","Yashvi Mehul Patel","New Shahibaug 2"],["G","Std 5","528","Jasmine Kiran Singh Malivad","Silver"],["G","Std 5","511","Aastha Rameshdas Sadhu","Dev Ashish"],["G","Std 5","529","Shagun Kuldipbhai Mali","Swaminarayan Mandir"],["G","Std 5","524","Radhika Svailal Darji","Nobel Nagar"],["G","Std 5","514","Pushti Prkashbhai Patel","Devashish Pride"],["G","Std 5","519","Devanshi Jigar Goswami","New Shahibaug 2"],["G","Std 5","507","Rahiba Chhatrapalsinh Jadeja","Abs Primary"],["G","Std 5","521","Danvi Priteshkumar Patel","New Shahibaug 2"],["G","Std 5","513","Riya Rahulkumar Darji","Devashish Pride"],["G","Std 5","534","Vyani Mahin Patel","Ved"],["G","Std 5","504","Ayushi Amitkumar Patel","Abs Primary"],["G","Std 6","602","Kiya Jatinbhai Panchal","Bansidhar"],["G","Std 6","608","Krisha Jigneshkumar Patel","New Shahibaug 3"],["G","Std 6","603","Mahi Sujal Kumar Patel","Devashish Pride"],["G","Std 6","605","Swara Yogeshkumar Patel","Murlidhar"],["G","Std 6","601","Dharmi Nileshbhai Vyash","Bansidhar"],["G","Std 6","609","Nirali Pareshbhai Khant","Shyamal Park"],["G","Std 6","604","Greshi Margeshkumar Patel","Gokuldham"],["G","Std 6","606","Nidhiben Jagdevsinh Solanki","Murlidhar"],["G","Std 6","610","Mahek Hardikbhai Valand","Swaminarayan Mandir"],["G","Std 6","607","Mihali Amitbhai Bhavsar","New Shahibaug 3"],["G","Std 7","712","Arya Vikaschandra Shukala","Gokuldham"],["G","Std 7","709","Diya Pankajbhai Panchal","Akshardham"],["G","Std 7","708","Nistha Atulbhai Patel","Abs Primary"],["G","Std 7","714","Tanvi Amit Bhai Parmar","Silver"],["G","Std 7","705","Dhriti Sanjaykumar Sharma","Abs Primary"],["G","Std 7","711","Nikita Vijayshankar Kushwaha","Dev Ashish"],["G","Std 7","715","Jency Pradipkumar Patel","Ved"],["G","Std 7","701","Bhavya Rakeshbhai Raval","Abs Primary"],["G","Std 7","710","Rahi Rakeshbhai Govani","Dev Ashish"],["G","Std 7","713","Shreya Hirenkumar Chudasama","New India Colony 2"],["G","Std 7","702","Mihika Sandeepsinh Sodha","Abs Primary"],["G","Std 7","704","Sonam Jigneshbhai Patel","Abs Primary"],["G","Std 7","703","Hir Shaileshbhai Sharma","Abs Primary"],["G","Std 7","707","Jinal Prashant Sorathiya","Abs Primary"],["G","Std 7","706","Shakshi Rohitbhai Raval","Abs Primary"],["G","Std 8","804","Krishna Kamleshbhai Panchal","Kishori Mandal"],["G","Std 8","802","Rashmi Alpeshbhai Panchal","Akshardham"],["G","Std 8","805","Vidhi Sunil Kumar Barot","Mangalmurti"],["G","Std 8","812","Navya Kirenkumar Patel","Ved"],["G","Std 8","809","Tamahnakuvarba Ranvirsinh Solanki","Shyamal Park"],["G","Std 8","808","Bhavika Pritam Kumar Chavda","Nobel Nagar"],["G","Std 8","811","Bhavya Pravin Bhai Panchal","Silver"],["G","Std 8","801","Diya Amitbhai Patel","Abs Primary"],["G","Std 8","810","Princy Kiranbhai Chaudhary","Shyamal Park"],["G","Std 8","816","Khushali Devendrabhai Patel","Ved"],["G","Std 8","815","Tiya Vipulbhai Patel","Ved"],["G","Std 8","814","Tiya Vipulbhai Patel","Ved"],["G","Std 8","806","Rutvi Devilal Kabra","New India Colony 2"],["G","Std 8","803","Kavya Rajesh Panchal","Karnavati"],["G","Std 8","807","Hensy Rakeshkumar Patel","New Shahibaug 2"],["G","Std 8","813","Yana Sandipkumar Patel","Ved"],["G","Std 9","901","Vaidehi Rohitbhai Patel","Bansidhar"],["G","Std 9","902","Yashvi Mehulbhai Thakkar","Kishori Mandal"],["G","Std 10","1007","Dhvani Dineshbhai Panchal","Kishori Mandal"],["G","Std 10","1010","Dipexa Manishkumar Patel","Hanspura"],["G","Std 10","1002","Swara Rakeshbhai Brahmbhatt","Kishori Mandal"],["G","Std 10","1004","Purva Chiragbhai Prajapati","Kishori Mandal"],["G","Std 10","1009","Diyaba Divansinh Vanar","Swaminarayan Mandir"],["G","Std 10","1006","Khushi Nimeshbhai Patel","Kishori Mandal"],["G","Std 10","1005","Trusha Bhaveshbhai Chauhan","Kishori Mandal"],["G","Std 10","1008","Vaishnavi Jaysinghbhai Viras","Kishori Mandal"],["G","Std 10","1001","Khushi Harikrishna Bhavsar","Kishori Mandal"],["G","Std 10","1003","Priti Chiragbhai Prajapati","Kishori Mandal"],["G","Std 11","1107","Hetvi Prashantbhai Sorathiya","Kishori Mandal"],["G","Std 11","1106","Swati Minkeshbhai Patel","Kishori Mandal"],["G","Std 11","1103","Shiya Ashishbhai Shah","Kishori Mandal"],["G","Std 11","1102","Netra Vishalbhai Patel","Kishori Mandal"],["G","Std 11","1101","Aesha Rajeshkumar Patel","Kishori Mandal"],["G","Std 11","1104","Radhika Jigneshbhai Panchal","Kishori Mandal"],["G","Std 11","1105","Vruddhi Rakeshbhai Govani","Kishori Mandal"],["G","Std 12","1202","Yashvi Dharmeshkumar Dhamecha","Kishori Mandal"],["G","Std 12","1207","Shreya Sanjaybhai Modi","Kishori Mandal"],["G","Std 12","1204","Nidhi Sanjaykumar Patel","Kishori Mandal"],["G","Std 12","1201","Diya Vijaybhai Patel","Kishori Mandal"],["G","Std 12","1206","Gracy Bhaveshbhai Prajapati","Kishori Mandal"],["G","Std 12","1203","Tanvi Ankitbhai Vyas","Kishori Mandal"],["G","Std 12","1205","Dimple Kamleshbhai Panchal","Kishori Mandal"],["G","College","SE102","Prapti Yakinbhai Patel","Kishori Mandal"],["G","College","SE103","Mahek Rajeshbhai Makwana","Kishori Mandal"],["G","College","SE101","Srushti Mahendrasinh Chavda","Kishori Mandal"],["G","College","SE201","Jiya Ganeshbhai Badgujar","Kishori Mandal"],["G","College","SE402","Krupa Jayeshbhai Patel","Kishori Mandal"],["G","College","SE401","Krina Rakeshkumar Valand","Kishori Mandal"],["G","College","SE405","Bhavika Gopal Supe","Kishori Mandal"],["G","College","SE403","Riya Chetanbhai Jethva","Kishori Mandal"],["G","College","SE501","Shreya Dineshbhai Panchal","Kishori Mandal"],["G","College","SE601","Vastavi Maheshbhai Patel","Kishori Mandal"],["G","College","SE801","Priyanka Kamleshbhai Prajapati","Kishori Mandal"],["G","College","SE802","Mansi Rakeshkumar Patel","Kishori Mandal"]];
+const RANK = {"B-111": {"r": 1, "gift": "સ્ટડી ટેબલ"}, "B-118": {"r": 2, "gift": "નાનું લંચ બોક્સ"}, "B-215": {"r": 1, "gift": "સ્ટડી ટેબલ"}, "B-208": {"r": 2, "gift": "નાનું લંચ બોક્સ"}, "B-304": {"r": 1, "gift": "સ્ટડી ટેબલ"}, "B-307": {"r": 2, "gift": "નાનું લંચ બોક્સ"}, "B-422": {"r": 1, "gift": "સ્ટડી ટેબલ"}, "B-421": {"r": 2, "gift": "નાનું લંચ બોક્સ"}, "B-523": {"r": 1, "gift": "મોટું લંચ બોક્સ"}, "B-532": {"r": 2, "gift": "નાનું લંચ બોક્સ"}, "B-618": {"r": 1, "gift": "મોટું લંચ બોક્સ"}, "B-610": {"r": 2, "gift": "નાનું લંચ બોક્સ"}, "B-720": {"r": 1, "gift": "મોટું લંચ બોક્સ"}, "B-715": {"r": 2, "gift": "કાચનો બાઉલ"}, "B-801": {"r": 1, "gift": "મોટું લંચ બોક્સ"}, "B-810": {"r": 2, "gift": "દીવાલ ઘડિયાળ"}, "B-908": {"r": 1, "gift": "બેગ"}, "B-905": {"r": 2, "gift": "દીવાલ ઘડિયાળ"}, "B-1009": {"r": 1, "gift": "બેગ"}, "B-1007": {"r": 2, "gift": "દીવાલ ઘડિયાળ"}, "B-1103": {"r": 1, "gift": "બેગ"}, "B-1104": {"r": 2, "gift": "દીવાલ ઘડિયાળ"}, "B-1202": {"r": 1, "gift": "બેગ"}, "B-1204": {"r": 2, "gift": "દીવાલ ઘડિયાળ"}};
+const STDS = ["Balvatika","Junior KG","Senior KG","Std 1","Std 2","Std 3","Std 4","Std 5","Std 6","Std 7","Std 8","Std 9","Std 10","Std 11","Std 12","College"];
+const STD_GU = {"Balvatika":"બાલવાટિકા","Junior KG":"જુનિયર KG","Senior KG":"સિનિયર KG","College":"કૉલેજ"};
+const stdLabel = s => STD_GU[s] || s.replace("Std","ધો.");
+const gLabel = g => g==="B"?"બાળક":g==="G"?"બાલિકા":"બંને";
+const srKey = s => (s.match(/^\D+/)||[""])[0] + s.replace(/\D/g,"").padStart(5,"0");
+const students = ROSTER.map(([g,std,sr,name,mandal]) => ({id:g+"-"+sr,g,std,sr,name,mandal}))
+  .sort((a,b)=> a.g.localeCompare(b.g) || STDS.indexOf(a.std)-STDS.indexOf(b.std) || srKey(a.sr).localeCompare(srKey(b.sr)));
+const byId = Object.fromEntries(students.map(s=>[s.id,s]));
+
+const DEFAULT_ALLOCS = [{"g": "B", "gift": "દોરીવાળી બોટલ", "qty": 21, "stds": ["Balvatika", "Junior KG", "Senior KG"], "vol": "", "id": "kgB"}, {"g": "B", "gift": "રેકેટ બોલ સાથે સેટ", "qty": 56, "stds": ["Std 1", "Std 2"], "vol": "", "id": "s12B"}, {"g": "B", "gift": "નાની બોટલ", "qty": 31, "stds": ["Std 3", "Std 4"], "vol": "", "id": "s34B"}, {"g": "B", "gift": "વોલેટ", "qty": 40, "stds": ["Std 5", "Std 8"], "vol": "", "id": "s58B"}, {"g": "B", "gift": "Exam pad", "qty": 35, "stds": ["Std 6", "Std 7"], "vol": "", "id": "s67B"}, {"g": "B", "gift": "મોટી બોટલ", "qty": 16, "stds": ["Std 9", "Std 10"], "vol": "", "id": "s910B"}, {"g": "B", "gift": "ઘડિયાળ", "qty": 5, "stds": ["Std 11", "Std 12"], "vol": "", "id": "s1112B"}, {"g": "B", "gift": "ડાયરી", "qty": 6, "stds": ["College"], "vol": "", "id": "colB"}];
+let att = {}, guests = {}, cfg = {allocs:DEFAULT_ALLOCS};
+let db = null, canSet = true;
+let me = ""; try{ me = localStorage.getItem("iv_me") || ""; }catch(e){}
+const ui = {view:"entry", g:"A", std:"", q:"", f:"all", mine:true, rank:false};
+const $ = id => document.getElementById(id);
+const esc = s => String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const people = r => r ? (r.b?1:0)+(r.m?1:0)+(r.p?1:0)+(r.x||0) : 0;
+const here = r => !!r && people(r)>0;
+const allocs = () => cfg.allocs||[];
+const inA = (a,s) => (a.stds||[]).includes(s.std);
+const rankOf = s => RANK[s.id] || null;
+const rLabel = r => r===1?"પ્રથમ":"દ્વિતીય";
+const allocOf = s => rankOf(s) ? null : allocs().find(a=>inA(a,s)&&a.g===s.g) || allocs().find(a=>inA(a,s)&&a.g==="A") || null;
+const giftOf = s => rankOf(s) ? rankOf(s).gift : ((allocOf(s)||{}).gift || "");
+const volOf = s => (allocOf(s)||{}).vol || "";
+const myAllocs = () => me ? allocs().filter(a=>a.vol===me) : [];
+const myVol = () => myAllocs().length>0;
+const mineHas = s => { const a=allocOf(s); return !!a && a.vol===me; };
+const volNames = () => [...new Set(allocs().map(a=>a.vol).filter(Boolean))];
+function stock(a){
+  let present=0, given=0;
+  for(const s of students){ if(allocOf(s)!==a) continue; const r=att[s.id]; if(here(r)&&r.b) present++; if(r&&r.gift) given++; }
+  const qty=+a.qty||0;
+  return {qty, present, given, left:qty-given, pending:present-given, short:Math.max(0,present-qty)};
+}
+const stdShort = s => STD_GU[s] ? STD_GU[s] : s.replace("Std ","");
+const aTitle = a => { const st=(a.stds||[]); const txt = st.length ? (st.every(s=>/^Std /.test(s)) ? "ધો. "+st.map(stdShort).join("/") : st.map(stdLabel).join(" / ")) : "No standard"; return txt+(a.g==="A"?"":" "+gLabel(a.g)); };
+
+function toast(msg){ const t=$("toast"); t.textContent=msg; t.style.display="block"; clearTimeout(toast.h); toast.h=setTimeout(()=>t.style.display="none",2600); }
+function showWarn(t){ const w=$("warn"); w.textContent=t; w.style.display="block"; }
+
+/* ---------- writes: one at a time per document ---------- */
+const chains = {};
+function put(path, rec){
+  if(!db) return;
+  const once = () => rec===null ? db.doc(path).delete() : db.doc(path).set(rec);
+  const run = () => once().catch(e=>{
+    if(e && e.code==="unavailable") return new Promise(r=>setTimeout(r,400+Math.random()*600)).then(once);
+    throw e;
+  }).catch(e=>{
+    if(e && (e.code==="permission-denied" || e.code==="invalid-argument")){
+      if(path.startsWith("cfg/")) toast("Only Admin IDs can change settings");
+      else showWarn("તમારી પાસે edit access નથી.");
+    } else if(e && e.code==="resource-exhausted") toast("Storage full, cannot add more");
+    else toast("Save failed, try again");
+  });
+  chains[path] = (chains[path]||Promise.resolve()).then(run, run);
+}
+function writeAtt(id, rec){ att[id]=rec; render(); put("att/"+id, rec); }
+function writeCfg(){ put("cfg/main", {allocs:allocs()}); }
+
+/* ---------- totals ---------- */
+function totals(list){
+  let stu=0, ppl=0, gift=0;
+  for(const s of list){ const r=att[s.id]; if(here(r)){ ppl+=people(r); if(r.b) stu++; } if(r&&r.gift) gift++; }
+  return {stu, ppl, gift, fam: ppl-stu, n:list.length};
+}
+const guestList = () => Object.entries(guests).map(([id,g])=>({id,...g})).sort((a,b)=>(b.at||0)-(a.at||0));
+const guestPpl = () => guestList().reduce((a,g)=>a+(g.n||0),0);
+function renderHeader(){
+  const t=totals(students), gp=guestPpl();
+  $("hHall").textContent=t.ppl+gp; $("hStu").textContent=t.stu; $("hTot").textContent=t.n;
+  $("hFam").textContent=t.fam; $("hGuest").textContent=gp; $("hGift").textContent=t.gift;
+  $("meTxt").textContent = U() ? `${U().name} · ${roleText(U())}` : ownerMode ? "Owner" : (me || "તમારું નામ પસંદ કરો");
+}
+
+/* ---------- filters ---------- */
+function pool(){ const u=U(); return students.filter(s => (ui.g==="A" || s.g===ui.g) && !(u&&u.role==="entry"&&u.g!=="A"&&s.g!==u.g) && (ui.view!=="gift"||myScope(s))); }
+function renderChips(){
+  if(ui.g==="X"){ $("stds").innerHTML=""; $("filt").innerHTML=""; return; }
+  const p=pool(), counts={}; p.forEach(s=>counts[s.std]=(counts[s.std]||0)+1);
+  $("stds").innerHTML = `<button class="chip ${ui.std?"":"on"}" data-std="">બધા ધોરણ</button>` +
+    STDS.filter(s=>counts[s]).map(s=>`<button class="chip ${ui.std===s?"on":""}" data-std="${s}">${stdLabel(s)}<small>${counts[s]}</small></button>`).join("");
+  const F = ui.view==="gift"
+    ? [["pend","બાકી ઇનામ"],["done","ઇનામ આપ્યા"],["all","હાજર બધા"]]
+    : [["all","બધા"],["here","હાજર"],["absent","ગેરહાજર"]];
+  if(!F.some(f=>f[0]===ui.f)) ui.f=F[0][0];
+  let h = F.map(([k,l])=>`<button class="chip ${ui.f===k?"on":""}" data-f="${k}">${l}</button>`).join("");
+  if(ui.view==="gift" && !(U()&&U().role==="gift") && myVol()) h += `<button class="chip ${ui.mine&&!ui.rank?"on":""}" data-mine="1">મારા ધોરણ</button>`;
+  if(ui.view==="gift" && !(U()&&U().role==="gift")) h += `<button class="chip ${ui.rank?"on":""}" data-rank="1">🏆 Rankers</button>`;
+  $("filt").innerHTML = h;
+}
+function visible(){
+  const q=ui.q.trim().toLowerCase(), qn=q.replace(/[\s.]/g,"");
+  return pool().filter(s=>{
+    if(ui.std && s.std!==ui.std) return false;
+    const r=att[s.id];
+    if(ui.view==="gift"){
+      if(!here(r)) return false;
+      if(ui.f==="pend"&&r.gift) return false; if(ui.f==="done"&&!r.gift) return false;
+      if(U()&&U().role==="gift"){ /* scope already applied */ }
+      else if(ui.rank){ if(!rankOf(s)) return false; }
+      else if(ui.mine && myVol() && !mineHas(s)) return false;
+    } else { if(ui.f==="here"&&!here(r)) return false; if(ui.f==="absent"&&here(r)) return false; }
+    if(!q) return true;
+    return s.sr.toLowerCase().replace(/\./g,"").includes(qn) || s.name.toLowerCase().includes(q) || s.mandal.toLowerCase().includes(q);
+  });
+}
+
+/* ---------- lists ---------- */
+function rowHtml(s){
+  const r=att[s.id], h=here(r), gn=giftOf(s);
+  const sub = `${stdLabel(s.std)}, ${esc(s.mandal)}${ui.g==="A"?" · "+gLabel(s.g):""}`;
+  let right="", extra="";
+  if(ui.view==="gift"){
+    right = `<span class="cnt" title="People">${people(r)}</span><span class="gbtn ${r.gift?"done":""}">${r.gift?"✓ આપ્યું":"ઇનામ"}</span>`;
+    extra = r.gift && r.gb ? `<div class="gname">${esc(gn)}${gn?", ":""}આપનાર: ${esc(r.gb)}</div>` : (gn?`<div class="gname">${esc(gn)}</div>`:"");
+  } else if(h){
+    right = `<span class="tags">${r.m?'<span class="t m">મા</span>':""}${r.p?'<span class="t p">પિ</span>':""}${r.x?`<span class="t b">+${r.x}</span>`:""}${r.gift?'<span class="t i">ઇ✓</span>':""}</span><span class="cnt">${people(r)}</span>`;
+  }
+  return `<button class="row ${h?"here":""}" data-id="${s.id}"><span class="sr">${esc(s.sr)}</span><span class="who"><div class="n">${rankOf(s)?`<span class="t i">🏆 ${rLabel(rankOf(s).r)}</span> `:""}${esc(s.name)}</div><div class="s">${sub}</div>${extra}</span>${right}</button>`;
+}
+function renderGuests(){
+  const q=ui.q.trim().toLowerCase();
+  const list=guestList().filter(g=>!q||(g.name||"").toLowerCase().includes(q)||(g.ref||"").toLowerCase().includes(q));
+  let html=`<button class="addg" id="addGuest">+ મહેમાન ઉમેરો</button><div class="grp"><span>મહેમાન</span><span>${guestList().length} entries, ${guestPpl()} લોકો</span></div>`;
+  html += list.length ? list.map(g=>`<button class="row guest here" data-gid="${g.id}"><span class="sr">G</span><span class="who"><div class="n">${esc(g.name)}</div><div class="s">${esc(g.ref||"No reference")}${g.by?", by "+esc(g.by):""}</div></span><span class="cnt">${g.n||0}</span></button>`).join("")
+    : `<div class="empty">હજુ કોઈ મહેમાન નથી</div>`;
+  $("main").innerHTML=html;
+}
+function renderList(){
+  if(ui.g==="X"){ renderGuests(); return; }
+  const v=visible();
+  let html = ui.view==="entry" ? `<button class="addg" id="addGuest">+ મહેમાન ઉમેરો (list માં નથી)</button>` : "";
+  if(ui.view==="gift" && U() && U().role==="gift" && U().alloc!=="rank" && allocById(U().alloc)) html += stockCard(allocById(U().alloc));
+  if(ui.view==="gift" && !U() && !me && allocs().length) html += `<button class="addg" id="pickMe">👤 પહેલા તમારું નામ પસંદ કરો</button>`;
+  if(ui.view==="gift" && !U() && myVol() && ui.mine && !ui.rank) html += myAllocs().map(stockCard).join("");
+  if(!v.length){ $("main").innerHTML=html+`<div class="empty">${ui.q?"કોઈ મળ્યું નહીં":ui.view==="gift"&&ui.f==="pend"?"હાજર બધાને ઇનામ મળી ગયું ✓ (નવા આવે ત્યારે અહીં દેખાશે)":ui.view==="gift"?"અહીં હજુ કોઈ નથી. પહેલા પ્રવેશમાં હાજરી પૂરો.":"કોઈ મળ્યું નહીં"}</div>`; return; }
+  let last="";
+  for(const s of v){
+    const k=s.g+s.std;
+    if(k!==last){
+      const grp=students.filter(x=>x.g===s.g&&x.std===s.std), t=totals(grp), ga=allocs().find(a=>(a.stds||[]).includes(s.std)&&a.g===s.g)||allocs().find(a=>(a.stds||[]).includes(s.std)&&a.g==="A"), gn=ga?ga.gift:"";
+      html+=`<div class="grp"><span>${gLabel(s.g)}: ${stdLabel(s.std)}${gn?" · 🎁 "+esc(gn)+(ga.vol?" ("+esc(ga.vol)+")":""):""}</span><span>${t.stu}/${t.n} હાજર</span></div>`; last=k;
+    }
+    html+=rowHtml(s);
+  }
+  $("main").innerHTML=html;
+}
+
+function stockCard(a){
+  const k=stock(a);
+  return `<div class="stk ${k.left<=0&&k.qty?"out":""}"><div class="stk-h"><b>🎁 ${esc(a.gift||"Gift")}</b><span>${aTitle(a)}</span></div>
+  <div class="stk-g"><div><b>${k.qty}</b><span>મળ્યા</span></div><div><b>${k.given}</b><span>આપ્યા</span></div><div><b>${k.left}</b><span>બાકી stock</span></div><div><b>${Math.max(0,k.pending)}</b><span>રાહ જુએ</span></div></div>
+  ${k.short?`<div class="stk-w">⚠ ${k.present} students હાજર છે પણ stock ${k.qty} છે, ${k.short} ખૂટે છે</div>`:""}</div>`;
+}
+/* ---------- report ---------- */
+function renderReport(){
+  const G = ui.rg||"A", mode = ui.rm||"sum";
+  const inG = s => G==="A" || s.g===G;
+  const seg = `<div class="seg" id="rSeg" style="margin-top:10px">${[["A","બધા"],["B","બાળક"],["G","બાલિકા"]].map(([k,l])=>`<button data-rg="${k}" class="${G===k?"on":""}">${l}</button>`).join("")}</div>
+    <div class="seg" id="rMode" style="margin-top:8px">${[["sum","સારાંશ"],["det","વિગતવાર"]].map(([k,l])=>`<button data-rm="${k}" class="${mode===k?"on":""}">${l}</button>`).join("")}</div>`;
+  const pool = students.filter(inG);
+  let body="";
+  if(mode==="sum"){
+    const t=totals(pool), gp=G==="A"?guestPpl():0;
+    let m=0,p=0,x=0,pend=0,both=0,none=0; const byVol={};
+    pool.forEach(s=>{const r=att[s.id]; if(r&&here(r)){m+=r.m?1:0;p+=r.p?1:0;x+=r.x||0; if(r.m&&r.p) both++; if(!r.m&&!r.p) none++; if(r.b&&!r.gift) pend++;} if(r&&r.gift){const k=r.gb||"Unknown"; byVol[k]=(byVol[k]||0)+1;}});
+    const block=(g,title)=>{
+      const rows=STDS.map(std=>{ const grp=students.filter(s=>s.g===g&&s.std===std); if(!grp.length) return ""; const k=totals(grp);
+        let mm=0,pp=0; grp.forEach(s=>{const r=att[s.id]; if(here(r)){ mm+=r.m?1:0; pp+=r.p?1:0; }});
+        return `<tr><td>${stdLabel(std)}</td><td>${k.n}</td><td>${k.stu}</td><td>${k.n-k.stu}</td><td>${mm}</td><td>${pp}</td><td>${k.ppl}</td><td>${k.gift}</td></tr>`; }).join("");
+      const grpAll=students.filter(s=>s.g===g), k=totals(grpAll); let mm=0,pp=0; grpAll.forEach(s=>{const r=att[s.id]; if(here(r)){ mm+=r.m?1:0; pp+=r.p?1:0; }});
+      return `<h2>${title}</h2><div class="tblw"><table><thead><tr><th>ધોરણ</th><th>કુલ</th><th>હાજર</th><th>ગેરહાજર</th><th>માતા</th><th>પિતા</th><th>લોકો</th><th>ઇનામ</th></tr></thead><tbody>${rows}<tr class="sum"><td>કુલ</td><td>${k.n}</td><td>${k.stu}</td><td>${k.n-k.stu}</td><td>${mm}</td><td>${pp}</td><td>${k.ppl}</td><td>${k.gift}</td></tr></tbody></table></div>`;
+    };
+    const volRows=Object.entries(byVol).sort((a,b)=>b[1]-a[1]).map(([k,n])=>`<tr><td>${esc(k)}</td><td>${n}</td></tr>`).join("");
+    const al = allocs().filter(a=>G==="A"||a.g==="A"||a.g===G);
+    const rk = pool.filter(rankOf);
+    body = `<div class="big" style="margin-top:12px">
+      <div><b>${t.ppl+gp}</b><span>${G==="A"?"સભામાં કુલ લોકો":"કુલ લોકો (આ વિભાગ)"}</span></div>
+      <div><b>${t.stu} / ${t.n}</b><span>વિદ્યાર્થી હાજર</span></div>
+      <div><b>${m}</b><span>માતા આવ્યા</span></div>
+      <div><b>${p}</b><span>પિતા આવ્યા</span></div>
+      <div><b>${both}</b><span>માતા-પિતા બંને આવ્યા</span></div>
+      <div><b>${none}</b><span>વાલી વગર આવ્યા</span></div>
+      <div><b>${x}</b><span>અન્ય સભ્યો</span></div>
+      ${G==="A"?`<div><b>${gp}</b><span>મહેમાન (${guestList().length} entries)</span></div>`:""}
+      <div><b>${t.gift}</b><span>ઇનામ આપ્યા, ${pend} બાકી</span></div>
+    </div>
+    ${G!=="G"?block("B","બાળ મંડળ (Boys)"):""}${G!=="B"?block("G","બાલિકા મંડળ (Girls)"):""}
+    ${al.length?`<h2>ઇનામ stock</h2><div class="tblw"><table><thead><tr><th>ગ્રુપ</th><th style="text-align:left">ઇનામ</th><th style="text-align:left">Volunteer</th><th>મળ્યા</th><th>હાજર</th><th>આપ્યા</th><th>બાકી</th></tr></thead><tbody>${al.map(a=>{const k=stock(a);return `<tr><td>${aTitle(a)}</td><td style="text-align:left">${esc(a.gift)}</td><td style="text-align:left">${esc(a.vol)}</td><td>${k.qty}</td><td>${k.present}</td><td>${k.given}</td><td style="${k.left<0?"color:var(--mata)":""}">${k.left}</td></tr>`;}).join("")}</tbody></table></div>`:""}
+    ${rk.length?`<h2>🏆 Rankers (ટોપ 2)</h2><div class="tblw"><table><thead><tr><th>ધોરણ</th><th>ક્રમ</th><th>SR</th><th style="text-align:left">નામ</th><th style="text-align:left">ઇનામ</th><th>હાજર</th><th>આપ્યું</th></tr></thead><tbody>${rk.map(s=>{const r=att[s.id];return `<tr><td>${stdLabel(s.std)}</td><td>${rLabel(rankOf(s).r)}</td><td>${s.sr}</td><td style="text-align:left">${esc(s.name)}</td><td style="text-align:left">${esc(rankOf(s).gift)}</td><td>${here(r)?"✓":"—"}</td><td>${r&&r.gift?"✓":"—"}</td></tr>`;}).join("")}</tbody></table></div>`:""}
+    ${volRows?`<h2>કોણે કેટલા ઇનામ આપ્યા</h2><div class="tblw"><table><thead><tr><th>Volunteer</th><th>ઇનામ</th></tr></thead><tbody>${volRows}</tbody></table></div>`:""}
+    <button class="primary exp" id="exp">Download full Excel sheet (CSV)</button>
+    <p class="note" id="expNote">All students and guests with every detail. Opens in Excel or Google Sheets.</p>`;
+  } else {
+    const std = ui.rstd||"", pf = ui.rpf||"all";
+    const PF=[["all","બધા"],["here","હાજર"],["absent","ગેરહાજર"],["pyes","પિતા આવ્યા"],["pno","પિતા નહીં"],["myes","માતા આવ્યા"],["mno","માતા નહીં"],["both","બંને આવ્યા"],["none","વાલી નહીં"]];
+    const list = pool.filter(s=>{
+      if(std && s.std!==std) return false;
+      const r=att[s.id], h=here(r);
+      switch(pf){
+        case "here": return h; case "absent": return !h;
+        case "pyes": return h&&r.p; case "pno": return h&&!r.p;
+        case "myes": return h&&r.m; case "mno": return h&&!r.m;
+        case "both": return h&&r.m&&r.p; case "none": return h&&!r.m&&!r.p;
+      } return true;
+    });
+    ui._detail = list;
+    const counts={}; pool.forEach(s=>counts[s.std]=(counts[s.std]||0)+1);
+    const ck = v => v ? `<span style="color:var(--ok);font-weight:700">✓</span>` : `<span style="color:var(--muted)">✗</span>`;
+    body = `<label class="fld" style="margin-top:12px"><span>ધોરણ</span><select id="rStd"><option value="">બધા ધોરણ</option>${STDS.filter(s=>counts[s]).map(s=>`<option value="${s}" ${s===std?"selected":""}>${stdLabel(s)}</option>`).join("")}</select></label>
+      <div class="chips" id="rPf" style="flex-wrap:wrap">${PF.map(([k,l])=>`<button class="chip ${pf===k?"on":""}" data-pf="${k}">${l}</button>`).join("")}</div>
+      <div class="grp" style="margin-top:12px"><span>${list.length} students</span><span>${pf!=="all"&&pf!=="absent"&&pf!=="here"?"(ફક્ત હાજર students)":""}</span></div>
+      ${list.length?`<div class="tblw"><table class="det"><thead><tr><th>SR</th><th style="text-align:left">નામ</th><th>ધોરણ</th><th>બાળક</th><th>માતા</th><th>પિતા</th><th>અન્ય</th><th>કુલ</th><th>ઇનામ</th></tr></thead><tbody>${list.map(s=>{const r=att[s.id]||{}, h=here(r);
+        return `<tr style="${h?"":"opacity:.55"}"><td>${esc(s.sr)}</td><td style="text-align:left">${esc(s.name)}${G==="A"?` <small style="color:var(--muted)">${s.g==="B"?"બાળક":"બાલિકા"}</small>`:""}</td><td>${stdLabel(s.std)}</td><td>${h?ck(r.b):"—"}</td><td>${h?ck(r.m):"—"}</td><td>${h?ck(r.p):"—"}</td><td>${h?(r.x||0):"—"}</td><td>${h?people(r):"—"}</td><td>${r.gift?ck(1):"—"}</td></tr>`;}).join("")}</tbody></table></div>`:`<div class="empty">કોઈ મળ્યું નહીં</div>`}
+      <button class="primary exp" id="expView">Download this list (CSV)</button>
+      <p class="note" id="expNote">Downloads exactly the students shown above, with the same filters.</p>`;
+  }
+  $("main").innerHTML = `<div class="rep">${seg}${body}</div>`;
+  $("rSeg").onclick=e=>{ const b=e.target.closest("button"); if(!b) return; ui.rg=b.dataset.rg; ui.rstd=""; renderReport(); };
+  $("rMode").onclick=e=>{ const b=e.target.closest("button"); if(!b) return; ui.rm=b.dataset.rm; renderReport(); };
+  if($("rStd")) $("rStd").onchange=e=>{ ui.rstd=e.target.value; renderReport(); };
+  if($("rPf")) $("rPf").onclick=e=>{ const b=e.target.closest(".chip"); if(!b) return; ui.rpf=b.dataset.pf; renderReport(); };
+  if($("exp")) $("exp").onclick=()=>exportCsv(students, true, "Inam_Vitran_Hajari_Naroda_2026.csv");
+  if($("expView")) $("expView").onclick=()=>{ const pfl={all:"All",here:"Present",absent:"Absent",pyes:"Father_came",pno:"Father_not_came",myes:"Mother_came",mno:"Mother_not_came",both:"Both_parents",none:"No_parents"}[ui.rpf||"all"];
+    exportCsv(ui._detail||[], false, `Inam_Vitran_${G==="B"?"Balak":G==="G"?"Balika":"All"}_${(ui.rstd||"AllStd").replace(/\s/g,"")}_${pfl}.csv`); };
+}
+
+/* ---------- settings ---------- */
+function renderAdminSettings(){
+  const A=allocs(), lock=!canSet, names=volNames();
+  const opts = `<option value="">— પસંદ કરો —</option>` + names.map(n=>`<option ${n===me?"selected":""}>${esc(n)}</option>`).join("") +
+    (me && !names.includes(me) ? `<option selected>${esc(me)}</option>` : "");
+  const overlapG = (g1,g2) => g1==="A"||g2==="A"||g1===g2;
+  const takenBy = (i,std) => A.findIndex((a,j)=>j!==i && overlapG(a.g,A[i].g) && (a.stds||[]).includes(std));
+  $("main").innerHTML=`<div class="set">
+    <h2>તમે કોણ છો? (this phone)</h2>
+    <div class="box">
+      <label class="fld" style="margin-top:0"><span>Volunteer list માંથી</span><select id="meSel">${opts}</select></label>
+      <div class="inline"><input id="meFree" placeholder="અથવા નામ લખો"><button id="meSet">Set</button></div>
+      <p class="note" style="margin:8px 0 0">Saved on this phone and recorded with every entry and gift you mark.</p>
+    </div>
+    <h2>ઇનામ ગ્રુપ</h2>
+    <p class="note" style="margin-top:0">One group = one gift. Tick all standards that get it (e.g. ધો. 1 + 2 → Racket set), choose the volunteer and how many pieces you handed them.</p>
+    ${lock?`<p class="note">Only the owner or Editors can change these.</p>`:""}
+    <datalist id="volDl">${names.map(n=>`<option value="${esc(n)}">`).join("")}</datalist>
+    ${A.map((a,i)=>{ const k=stock(a); return `<div class="box al">
+      <div class="stk-h"><b>${aTitle(a)}</b></div>
+      <label class="fld"><span>કોના માટે</span><select data-f="g" data-i="${i}" ${lock?"disabled":""}>${["A","B","G"].map(g=>`<option value="${g}" ${a.g===g?"selected":""}>${gLabel(g)}</option>`).join("")}</select></label>
+      <div class="fld"><span>ધોરણ (tick all in this group)</span><div class="chips" style="flex-wrap:wrap">${STDS.map(s=>{ const on=(a.stds||[]).includes(s), tb=takenBy(i,s);
+        return `<button class="chip ${on?"on":""}" data-ts="${i}" data-s="${s}" ${lock||(!on&&tb>=0)?"disabled":""} style="${!on&&tb>=0?"opacity:.35":""}">${stdLabel(s)}</button>`; }).join("")}</div></div>
+      <label class="fld"><span>ઇનામ નું નામ</span><input data-f="gift" data-i="${i}" value="${esc(a.gift)}" placeholder="e.g. Racket set" ${lock?"disabled":""}></label>
+      <div class="al-r"><label class="fld"><span>Volunteer</span><input data-f="vol" data-i="${i}" list="volDl" value="${esc(a.vol)}" placeholder="e.g. Ashish" ${lock?"disabled":""}></label>
+        <label class="fld" style="max-width:110px"><span>Pieces આપ્યા</span><input data-f="qty" data-i="${i}" type="number" inputmode="numeric" min="0" value="${+a.qty||0}" ${lock?"disabled":""}></label></div>
+      <div class="al-s">${students.filter(s=>allocOf(s)===a).length} students in list, ${k.present} હાજર, ${k.given} આપ્યા, <b>${k.left} બાકી</b>${lock?"":`<button class="del" data-dela="${i}">Remove</button>`}</div>
+    </div>`; }).join("")}
+    ${lock?"":`<button class="addg" id="addAl">+ નવું ઇનામ ગ્રુપ</button>`}
+  </div>`;
+  $("meSel").onchange=e=>setMe(e.target.value);
+  $("meSet").onclick=()=>{ const v=$("meFree").value.trim(); if(v) setMe(v); };
+  if(lock) return;
+  $("addAl").onclick=()=>{ cfg.allocs=[...A,{id:"a"+Date.now().toString(36),stds:[],g:"A",gift:"",vol:"",qty:0}]; writeCfg(); renderSettings(); };
+  document.querySelectorAll("[data-ts]").forEach(b=>b.onclick=()=>{ const i=+b.dataset.ts, s=b.dataset.s;
+    cfg.allocs=A.map((a,j)=>{ if(j!==i) return a; const st=new Set(a.stds||[]); st.has(s)?st.delete(s):st.add(s); return {...a,stds:STDS.filter(x=>st.has(x))}; });
+    writeCfg(); renderSettings(); });
+  document.querySelectorAll("[data-f]").forEach(el=>el.onchange=()=>{
+    const i=+el.dataset.i, f=el.dataset.f; let v=el.value.trim(); if(f==="qty") v=Math.max(0,parseInt(v)||0);
+    const next=A.map((a,j)=>j===i?{...a,[f]:v}:a), x=next[i];
+    if(f==="g" && next.some((a,j)=>j!==i&&overlapG(a.g,x.g)&&(a.stds||[]).some(s=>(x.stds||[]).includes(s)))){ toast("Another group already has these standards for that side"); renderSettings(); return; }
+    cfg.allocs=next; writeCfg(); toast("Saved"); renderSettings();
+  });
+  document.querySelectorAll("[data-dela]").forEach(b=>b.onclick=()=>{ const i=+b.dataset.dela;
+    if(!confirm(`Remove ${A[i].gift||"this group"} (${aTitle(A[i])})?`)) return; cfg.allocs=A.filter((_,j)=>j!==i); writeCfg(); renderSettings(); });
+}
+function renderSettings(){
+  const r=role();
+  if(r!=="admin"){ $("main").innerHTML=`<div class="set"><h2>Account</h2>${accountBox()}<p class="note">Your entries are recorded as <b>${esc(me)}</b>.</p></div>`; if($("lgOut")) $("lgOut").onclick=logout; return; }
+  renderAdminSettings();
+  const set=document.querySelector("#main .set");
+  if(U()||ownerMode){ const first=set.querySelector("h2"), box=set.querySelector(".box"); if(first) first.remove(); if(box) box.remove(); }
+  set.insertAdjacentHTML("afterbegin", accountBox());
+  if(canSet) { set.insertAdjacentHTML("beforeend", usersSection()); bindUsers(); }
+  if($("lgOut")) $("lgOut").onclick=logout;
+}
+function setMe(n){ me=n; try{ localStorage.setItem("iv_me", n); }catch(e){} renderHeader(); toast(n?`Hello, ${n}`:"Name cleared"); ui.mine=true; if(ui.view==="set") renderSettings(); }
+
+/* ---------- login & roles ---------- */
+let users = [], ownerMode = false, usersReady = false;
+let sessId = null; try{ sessId = localStorage.getItem("iv_uid"); }catch(e){}
+const U = () => users.find(u=>u.id===sessId) || null;
+const role = () => { if(!usersReady) return null; const u=U(); if(u) return u.role; return (users.length===0 || ownerMode) ? "admin" : null; };
+const VIEWS = {admin:["entry","gift","report","set"], entry:["entry","set"], gift:["gift","set"]};
+async function hashPw(id,pw){
+  const b = await crypto.subtle.digest("SHA-256", new TextEncoder().encode("smvs-iv|"+id.toLowerCase()+"|"+pw));
+  return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,"0")).join("");
+}
+const allocById = id => allocs().find(a=>a.id===id) || null;
+function roleText(u){
+  if(!u) return ownerMode ? "Owner (admin)" : "Admin";
+  if(u.role==="admin") return "Admin";
+  if(u.role==="entry") return "હાજરી: "+gLabel(u.g);
+  if(u.alloc==="rank") return "ઇનામ: 🏆 Rankers "+gLabel(u.g);
+  const a=allocById(u.alloc); return a ? `ઇનામ: ${aTitle(a)}, ${a.gift||"gift"}` : "ઇનામ: (group removed)";
+}
+function myScope(s){
+  const u=U(); if(!u || u.role!=="gift") return true;
+  if(u.alloc==="rank") return !!rankOf(s) && (u.g==="A"||s.g===u.g);
+  const a=allocOf(s); return !!a && a.id===u.alloc;
+}
+function applyRole(){
+  const r=role(), u=U();
+  if(u) me=u.name;
+  $("login").style.display = r ? "none" : "flex";
+  if(!r) return;
+  const allowed=VIEWS[r];
+  document.querySelectorAll("#nav button").forEach(b=>b.style.display = allowed.includes(b.dataset.v) ? "" : "none");
+  if(!allowed.includes(ui.view)){ ui.view=allowed[0]; ui.f = ui.view==="gift"?"pend":"all"; }
+  document.querySelectorAll("#nav button").forEach(x=>x.classList.toggle("on",x.dataset.v===ui.view));
+  const lockG = u && u.role==="entry" && u.g!=="A" ? u.g : null;
+  document.querySelectorAll("#seg button").forEach(b=>{ const g=b.dataset.g; b.style.display = (lockG && g!==lockG && g!=="X") || (u&&u.role==="gift"&&g!=="A") ? "none" : ""; });
+  if(lockG && ui.g!==lockG && ui.g!=="X"){ ui.g=lockG; }
+  if(u && u.role==="gift") ui.g="A";
+  $("seg").style.display = u && u.role==="gift" ? "none" : "";
+  document.querySelectorAll("#seg button").forEach(x=>x.classList.toggle("on",x.dataset.g===ui.g));
+}
+async function doLogin(){
+  const id=$("lgId").value.trim().toLowerCase(), pw=$("lgPw").value;
+  const u=users.find(x=>x.id===id);
+  if(!u || !pw || (await hashPw(id,pw))!==u.ph){ $("lgErr").textContent="ID અથવા password ખોટો છે"; return; }
+  sessId=u.id; try{ localStorage.setItem("iv_uid",u.id); }catch(e){}
+  $("lgPw").value=""; $("lgErr").textContent=""; ui.view=VIEWS[u.role][0]; ui.f=ui.view==="gift"?"pend":"all"; ui.q=""; $("q").value=""; ui.std=""; applyRole(); render(); toast(`Welcome, ${u.name}`);
+}
+function logout(){
+  sessId=null; ownerMode=false; try{ localStorage.removeItem("iv_uid"); }catch(e){}
+  me=""; applyRole(); render();
+}
+function writeUsers(){ put("cfg/users",{users}); }
+function usersSection(){
+  const opt = (v,l,sel) => `<option value="${v}" ${sel?"selected":""}>${esc(l)}</option>`;
+  const grpOpts = allocs().map(a=>opt(a.id,`${aTitle(a)}: ${a.gift||"gift"}`)).join("") + opt("rank","🏆 Rankers (ટોપ 2)");
+  return `<h2>🔐 Login IDs</h2>
+  <p class="note" style="margin-top:0">Once you create any ID, everyone must log in. Attendance IDs see only their side (બાળક or બાલિકા). Gift IDs see only their group's students.</p>
+  <div class="box">
+    ${users.length?users.map((u,i)=>`<div class="vol"><div class="volh"><b>${esc(u.name)}</b><span class="sh-s">ID: ${esc(u.id)}</span></div>
+      <div class="sh-s">${esc(roleText(u))}</div>
+      <div class="al-s"><button class="del" style="color:var(--balak);margin-left:0" data-rpw="${i}">Reset password</button><button class="del" data-delu="${i}">Remove</button></div></div>`).join("")
+      :`<p class="note" style="margin:0">No IDs yet. Right now anyone with the link has full access.</p>`}
+  </div>
+  <div class="box" style="margin-top:10px">
+    <b>+ નવું ID બનાવો</b>
+    <label class="fld"><span>નામ</span><input id="nuName" placeholder="e.g. Ashish Patel"></label>
+    <div class="al-r"><label class="fld"><span>Login ID</span><input id="nuId" autocapitalize="none" placeholder="e.g. ashish"></label>
+      <label class="fld"><span>Password</span><input id="nuPw" placeholder="min 4 characters"></label></div>
+    <label class="fld"><span>કામ</span><select id="nuRole">${opt("entry","હાજરી (Entry gate)")}${opt("gift","ઇનામ વિતરણ")}${opt("admin","Admin (બધું)")}</select></label>
+    <label class="fld" id="nuGw"><span>વિભાગ</span><select id="nuG">${opt("B","બાળક")}${opt("G","બાલિકા")}${opt("A","બંને")}</select></label>
+    <label class="fld" id="nuAw" style="display:none"><span>ઇનામ ગ્રુપ</span><select id="nuA">${grpOpts}</select></label>
+    <button class="primary" id="nuAdd" style="width:100%;margin-top:6px">Create ID</button>
+  </div>`;
+}
+function bindUsers(){
+  const sync=()=>{ const r=$("nuRole").value, a=$("nuA").value;
+    $("nuAw").style.display = r==="gift" ? "" : "none";
+    $("nuGw").style.display = r==="entry" || (r==="gift" && a==="rank") ? "" : "none"; };
+  $("nuRole").onchange=sync; $("nuA").onchange=sync; sync();
+  $("nuAdd").onclick=async()=>{
+    const name=$("nuName").value.trim(), id=$("nuId").value.trim().toLowerCase(), pw=$("nuPw").value, r=$("nuRole").value;
+    if(!name||!id){ toast("Enter name and login ID"); return; }
+    if(!/^[a-z0-9._-]{2,30}$/.test(id)){ toast("ID: only letters, numbers, . _ -"); return; }
+    if(users.some(u=>u.id===id)){ toast("This ID already exists"); return; }
+    if(pw.length<4){ toast("Password must be at least 4 characters"); return; }
+    const u={id,name,role:r,ph:await hashPw(id,pw)};
+    if(r==="entry") u.g=$("nuG").value;
+    if(r==="gift"){ u.alloc=$("nuA").value; if(u.alloc==="rank") u.g=$("nuG").value; else { const a=allocById(u.alloc); u.g=a?a.g:"A"; } }
+    const first = users.length===0;
+    users=[...users,u]; writeUsers();
+    if(first && r==="admin"){ sessId=id; try{ localStorage.setItem("iv_uid",id); }catch(e){} }
+    else if(first){ ownerMode=true; }
+    toast(`ID "${id}" created`); applyRole(); renderSettings();
+  };
+  document.querySelectorAll("[data-delu]").forEach(b=>b.onclick=()=>{ const u=users[+b.dataset.delu];
+    if(!confirm(`Remove ID ${u.id} (${u.name})?`)) return; users=users.filter(x=>x!==u); writeUsers(); applyRole(); renderSettings(); });
+  document.querySelectorAll("[data-rpw]").forEach(b=>b.onclick=async()=>{ const u=users[+b.dataset.rpw];
+    const pw=prompt(`New password for ${u.id}`); if(!pw) return; if(pw.length<4){ toast("At least 4 characters"); return; }
+    const ph=await hashPw(u.id,pw); users=users.map(x=>x===u?{...x,ph}:x); writeUsers(); toast("Password changed"); });
+}
+function accountBox(){
+  const u=U();
+  if(!u && !ownerMode) return "";
+  return `<div class="box" style="margin-top:12px"><div class="volh"><div><b>${esc(u?u.name:"Owner")}</b><div class="sh-s">${esc(roleText(u))}${u?", ID: "+esc(u.id):""}</div></div><button class="ghost" id="lgOut">Logout</button></div></div>`;
+}
+
+function render(){
+  if(!role()){ renderHeader(); return; }
+  renderHeader();
+  $("controls").style.display = (ui.view==="report"||ui.view==="set") ? "none" : "";
+  if(ui.view==="report"){ renderReport(); return; }
+  if(ui.view==="set"){ renderSettings(); return; }
+  if(ui.view==="gift" && ui.g==="X"){ ui.g="A"; document.querySelectorAll("#seg button").forEach(x=>x.classList.toggle("on",x.dataset.g==="A")); }
+  $("seg").querySelector('[data-g="X"]').style.display = ui.view==="gift" ? "none" : "";
+  renderChips(); renderList();
+}
+
+/* ---------- student sheet ---------- */
+let cur=null, draft=null;
+function openSheet(id){
+  const s=byId[id]; cur=id; const r=att[id];
+  draft = r&&here(r) ? {b:!!r.b,m:!!r.m,p:!!r.p,x:r.x||0} : {b:true,m:false,p:false,x:0};
+  $("shSr").textContent=`SR ${s.sr} · ${gLabel(s.g)}`;
+  $("shN").textContent=s.name; $("shS").textContent=`${stdLabel(s.std)}, ${s.mandal}`;
+  $("shGn").textContent = rankOf(s) ? `🏆 ${rLabel(rankOf(s).r)} ક્રમ: ${rankOf(s).gift}` : giftOf(s) ? "🎁 "+giftOf(s)+(volOf(s)?", "+volOf(s)+" આપશે":"") : "";
+  $("shClear").style.display = here(r) ? "" : "none";
+  $("shSave").textContent = here(r) ? "Update" : "Save arrival";
+  paintSheet();
+  $("sheetWrap").classList.add("open");
+}
+function paintSheet(){
+  document.querySelectorAll(".tg").forEach(b=>b.classList.toggle("on",!!draft[b.dataset.k]));
+  $("xv").textContent=draft.x; $("shT").textContent=people(draft);
+  const r=att[cur], g=$("shGift");
+  if(U() && U().role==="entry"){ g.innerHTML=""; return; }
+  if(here(r)) g.innerHTML = r.gift ? `<span>ઇનામ આપ્યું ✓${r.gb?" by "+esc(r.gb):""}</span><button class="ghost" id="ungift">Undo ઇનામ</button>` : `<span>ઇનામ બાકી</span><button class="gbtn" id="dogift">ઇનામ આપ્યું</button>`;
+  else g.innerHTML="";
+  const ug=$("ungift"), dg=$("dogift");
+  if(ug) ug.onclick=()=>{ setGift(cur,false); paintSheet(); };
+  if(dg) dg.onclick=()=>{ if(setGift(cur,true)!==false) closeSheet(); };
+}
+function closeSheet(){ $("sheetWrap").classList.remove("open"); cur=null; render(); }
+document.querySelectorAll(".tg").forEach(b=>b.onclick=()=>{ draft[b.dataset.k]=!draft[b.dataset.k]; paintSheet(); });
+$("xp").onclick=()=>{ if(draft.x<20){draft.x++; paintSheet();} };
+$("xm").onclick=()=>{ if(draft.x>0){draft.x--; paintSheet();} };
+$("scrim").onclick=closeSheet;
+$("shSave").onclick=()=>{
+  if(people(draft)===0){ toast("Select at least one person"); return; }
+  const old=att[cur]||{}, s=byId[cur], nm=s.name.split(" ")[0], n=people(draft);
+  writeAtt(cur,{g:s.g,sr:s.sr,b:draft.b?1:0,m:draft.m?1:0,p:draft.p?1:0,x:draft.x,gift:old.gift?1:0,at:old.at||Date.now(),by:old.by||me,gt:old.gt||0,gb:old.gb||""});
+  toast(`${nm}: ${n} લોકો નોંધાયા`);
+  $("q").value=""; ui.q=""; closeSheet();
+};
+$("shClear").onclick=()=>{
+  const s=byId[cur];
+  if(!confirm(`Clear attendance for ${s.name}?`)) return;
+  writeAtt(cur,{g:s.g,sr:s.sr,b:0,m:0,p:0,x:0,gift:0,at:0,by:"",gt:0,gb:""}); closeSheet();
+};
+function setGift(id,val){
+  const r=att[id]; if(!here(r)) return;
+  if(val){ const a=allocOf(byId[id]); if(a && (+a.qty||0)>0 && stock(a).left<=0 && !confirm(`${a.gift} નો stock પૂરો થઈ ગયો છે. છતાં આપવું છે?`)) return false; }
+  writeAtt(id,{...r,gift:val?1:0,gt:val?Date.now():0,gb:val?me:""});
+}
+
+/* ---------- guest sheet ---------- */
+let gcur=null, gn=1;
+function openGuest(id){
+  gcur=id||null; const g=id?guests[id]:null;
+  $("gsT").textContent = g ? "મહેમાન બદલો" : "મહેમાન ઉમેરો";
+  $("gsName").value = g ? g.name||"" : ""; $("gsRef").value = g ? g.ref||"" : "";
+  gn = g ? g.n||1 : 1; $("gsn").textContent=gn;
+  $("gsDel").style.display = g ? "" : "none";
+  $("gsWrap").classList.add("open"); setTimeout(()=>$("gsName").focus(),250);
+}
+function closeGuest(){ $("gsWrap").classList.remove("open"); gcur=null; render(); }
+$("gscrim").onclick=closeGuest;
+$("gsp").onclick=()=>{ if(gn<50){gn++; $("gsn").textContent=gn;} };
+$("gsm").onclick=()=>{ if(gn>1){gn--; $("gsn").textContent=gn;} };
+$("gsSave").onclick=()=>{
+  const name=$("gsName").value.trim(); if(!name){ toast("Enter guest name"); return; }
+  const id = gcur || ("g"+Date.now().toString(36)+Math.random().toString(36).slice(2,6));
+  const old = guests[id]||{};
+  const rec={name, ref:$("gsRef").value.trim(), n:gn, at:old.at||Date.now(), by:old.by||me};
+  guests={...guests,[id]:rec}; put("guests/"+id, rec);
+  toast(`${name}: ${gn} લોકો નોંધાયા`); closeGuest();
+};
+$("gsDel").onclick=()=>{
+  if(!gcur||!confirm("Delete this guest entry?")) return;
+  const {[gcur]:_, ...rest}=guests; put("guests/"+gcur, null); guests=rest; closeGuest();
+};
+document.addEventListener("keydown",e=>{ if(e.key==="Escape"){ if(cur) closeSheet(); if($("gsWrap").classList.contains("open")) closeGuest(); } });
+
+/* ---------- events ---------- */
+$("main").addEventListener("click",e=>{
+  if(e.target.closest("#addGuest")){ openGuest(null); return; }
+  if(e.target.closest("#pickMe")){ goView("set"); return; }
+  const grow=e.target.closest("[data-gid]"); if(grow){ openGuest(grow.dataset.gid); return; }
+  const row=e.target.closest(".row[data-id]"); if(!row) return;
+  const id=row.dataset.id;
+  if(ui.view==="gift"){ const was=att[id].gift; if(setGift(id,!was)===false) return; if(!was) toast(`ઇનામ: ${byId[id].name.split(" ")[0]} ✓`); }
+  else openSheet(id);
+});
+$("q").addEventListener("input",e=>{ ui.q=e.target.value; renderList(); });
+$("seg").onclick=e=>{ const b=e.target.closest("button"); if(!b) return; ui.g=b.dataset.g; ui.std="";
+  document.querySelectorAll("#seg button").forEach(x=>x.classList.toggle("on",x===b)); render(); };
+$("stds").onclick=e=>{ const b=e.target.closest(".chip"); if(!b) return; ui.std=b.dataset.std; render(); };
+$("filt").onclick=e=>{ const b=e.target.closest(".chip"); if(!b) return; if(b.dataset.rank){ ui.rank=!ui.rank; } else if(b.dataset.mine){ ui.rank=false; ui.mine=!ui.mine; } else ui.f=b.dataset.f; render(); };
+function goView(v){ const r=role(); if(!r || !VIEWS[r].includes(v)) return; if(v!==ui.view) ui.f = v==="gift"?"pend":"all"; ui.view=v; document.querySelectorAll("#nav button").forEach(x=>x.classList.toggle("on",x.dataset.v===v)); window.scrollTo(0,0); render(); }
+$("nav").onclick=e=>{ const b=e.target.closest("button"); if(b) goView(b.dataset.v); };
+$("meBtn").onclick=()=>goView("set");
+
+/* ---------- export ---------- */
+function downloadCsv(filename, data){
+  try{
+    const blob = new Blob([data], {type:"text/csv;charset=utf-8;"});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url; a.download = filename; document.body.appendChild(a); a.click();
+    document.body.removeChild(a); setTimeout(()=>URL.revokeObjectURL(url), 2000);
+  }catch(e){ toast("Download not available right now"); }
+}
+async function exportCsv(list, withGuests, filename){
+  const t=v=>v?new Date(v).toLocaleTimeString("en-IN",{hour:"2-digit",minute:"2-digit"}):"";
+  const q=v=>`"${String(v??"").replace(/"/g,'""')}"`;
+  const lines=[["Type","Standard","SR NO","Name","Mandal","Status","Balak","Mata","Pita","Others","Total People","Rank","Gift Name","Assigned Volunteer","Inam Given","Given By","Arrival Time","Marked By","Inam Time"].join(",")];
+  for(const s of list){ const r=att[s.id]||{}, h=here(r);
+    lines.push([s.g==="B"?"Balak":"Balika",s.std,s.sr,s.name,s.mandal,h?"Present":"Absent",r.b?1:0,r.m?1:0,r.p?1:0,r.x||0,people(r),rankOf(s)?rLabel(rankOf(s).r):"",giftOf(s),volOf(s),r.gift?"Yes":"No",r.gift?r.gb||"":"",h?t(r.at):"",h?r.by||"":"",r.gift?t(r.gt):""].map(q).join(",")); }
+  if(withGuests) for(const g of guestList().reverse())
+    lines.push(["Guest","","",g.name,g.ref||"","Present","","","","",g.n||0,"","","","","",t(g.at),g.by||"",""].map(q).join(","));
+  downloadCsv(filename, "\ufeff"+lines.join("\r\n"));
+}
+
+/* ---------- boot ---------- */
+$("lgGo").onclick=doLogin; $("lgPw").onkeydown=e=>{ if(e.key==="Enter") doLogin(); }; $("lgId").onkeydown=e=>{ if(e.key==="Enter") $("lgPw").focus(); };
+applyRole();
+render();
+(()=>{
+  try{
+    if(!window.firebase || firebaseConfig.apiKey==="YOUR_API_KEY") throw new Error("not configured");
+    firebase.initializeApp(firebaseConfig);
+    db = firebase.firestore();
+  }catch(e){ db=null; }
+  if(!db){ usersReady=true; applyRole(); render(); $("liveTxt").textContent="Offline: this phone only"; showWarn("Live sharing is off. Add your Firebase config in index.html so all phones stay in sync (see README.md)."); return; }
+  const lost=()=>{ $("dot").classList.remove("on"); $("liveTxt").textContent="Connection lost, reload page"; };
+  const refresh=()=>{ $("dot").classList.add("on"); $("liveTxt").textContent="Live, synced across phones";
+    if(cur || $("gsWrap").classList.contains("open")) renderHeader();
+    else if(ui.view==="set" && document.activeElement && document.activeElement.matches("input")) renderHeader();
+    else render(); };
+  db.collection("att").limit(1000).onSnapshot(snap=>{ const n={}; snap.docs.forEach(d=>{ if(byId[d.id]) n[d.id]=d.data(); }); att=n; refresh(); }, lost);
+  db.collection("guests").limit(1000).onSnapshot(snap=>{ const n={}; snap.docs.forEach(d=>{ n[d.id]=d.data(); }); guests=n; refresh(); }, lost);
+  db.doc("cfg/users").onSnapshot(d=>{ usersReady=true; users = d.exists && Array.isArray(d.data().users) ? d.data().users : []; if(sessId && !U()){ sessId=null; try{ localStorage.removeItem("iv_uid"); }catch(e){} } applyRole(); refresh(); }, lost);
+  db.doc("cfg/main").onSnapshot(d=>{ const v=d.exists?d.data():{allocs:DEFAULT_ALLOCS}; cfg={allocs:(Array.isArray(v.allocs)?v.allocs:[]).map(a=>{ const b=a.stds?a:{...a,stds:a.std?[a.std]:[]}; return b.id?b:{...b,id:"a_"+b.g+"_"+(b.stds||[]).join("_").replace(/\s/g,"")}; })}; refresh(); }, lost);
+})();
+</script>
+</body>
+</html>
